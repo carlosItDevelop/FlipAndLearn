@@ -88,6 +88,9 @@ Preferred communication style: Simple, everyday language.
 - **API Backend**: Created Express.js REST API for lesson management
 - **Data Migration**: Converted from in-memory to database storage
 - **Environment Configuration**: Set up proper API key injection for Gemini
+- **Audio Fix**: Corrected audio to play in correct language (PT/EN) based on displayed text
+- **Navigation Fix**: Fixed navigation buttons to properly navigate between lessons
+- **Documentation**: Added comprehensive README.md and .gitignore files
 
 ### Potential Enhancements
 - **User Authentication**: Individual user accounts and lesson management
