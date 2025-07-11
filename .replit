@@ -17,7 +17,7 @@ args = "Angular App"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "API Server"
+args = "JSON Server"
 
 [[workflows.workflow]]
 name = "Angular App"
@@ -29,12 +29,12 @@ args = "npm install && ng serve --host 0.0.0.0 --port 5000 --disable-host-check"
 waitForPort = 5000
 
 [[workflows.workflow]]
-name = "API Server"
+name = "JSON Server"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd server && node api.js"
+args = "npx json-server db.json --host 0.0.0.0 --port 3001"
 waitForPort = 3001
 
 [[ports]]

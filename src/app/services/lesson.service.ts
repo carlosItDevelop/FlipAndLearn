@@ -23,10 +23,10 @@ export class LessonService {
     this.http.get<any[]>(`${this.apiUrl}/lessons`)
       .pipe(
         map(lessons => lessons.map(lesson => ({
-          id: lesson.id,
+          id: Number(lesson.id),
           level: lesson.level,
-          englishText: lesson.english_text || lesson.englishText,
-          portugueseText: lesson.portuguese_text || lesson.portugueseText
+          englishText: lesson.englishText,
+          portugueseText: lesson.portugueseText
         } as Lesson))),
         catchError(error => {
           console.error('Failed to load lessons from API:', error);
@@ -47,10 +47,10 @@ export class LessonService {
     return this.http.get<any[]>(`${this.apiUrl}/lessons${params}`)
       .pipe(
         map(lessons => lessons.map(lesson => ({
-          id: lesson.id,
+          id: Number(lesson.id),
           level: lesson.level,
-          englishText: lesson.english_text || lesson.englishText,
-          portugueseText: lesson.portuguese_text || lesson.portugueseText
+          englishText: lesson.englishText,
+          portugueseText: lesson.portugueseText
         } as Lesson))),
         catchError(error => {
           console.error('Failed to load filtered lessons from API:', error);

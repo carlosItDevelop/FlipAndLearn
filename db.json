@@ -1,0 +1,136 @@
+{
+  "lessons": [
+    {
+      "id": 1,
+      "level": "Iniciante",
+      "englishText": "The book is on the table.",
+      "portugueseText": "O livro está sobre a mesa."
+    },
+    {
+      "id": 2,
+      "level": "Intermediário",
+      "englishText": "Software architecture is the set of fundamental structures of a software system.",
+      "portugueseText": "Arquitetura de software é o conjunto de estruturas fundamentais de um sistema de software."
+    },
+    {
+      "id": 3,
+      "level": "Intermediário",
+      "englishText": "To be a good software architect, you need to understand the business requirements deeply.",
+      "portugueseText": "Para ser um bom arquiteto de software, você precisa entender profundamente os requisitos de negócio."
+    },
+    {
+      "id": 4,
+      "level": "Avançado",
+      "englishText": "Leveraging CQRS and event sourcing can lead to highly scalable and resilient systems, but it introduces complexity.",
+      "portugueseText": "Aproveitar CQRS e event sourcing pode levar a sistemas altamente escaláveis e resilientes, mas introduz complexidade."
+    },
+    {
+      "id": 5,
+      "level": "Iniciante",
+      "englishText": "I would like to order a coffee, please.",
+      "portugueseText": "Eu gostaria de pedir um café, por favor."
+    },
+    {
+      "id": 6,
+      "level": "Iniciante",
+      "englishText": "Where is the nearest train station?",
+      "portugueseText": "Onde é a estação de trem mais próxima?"
+    },
+    {
+      "id": 7,
+      "level": "Intermediário",
+      "englishText": "The team is deploying the new feature to the production environment.",
+      "portugueseText": "A equipe está implantando o novo recurso no ambiente de produção."
+    },
+    {
+      "id": 8,
+      "level": "Intermediário",
+      "englishText": "Learning a new language opens up a world of opportunities.",
+      "portugueseText": "Aprender um novo idioma abre um mundo de oportunidades."
+    },
+    {
+      "id": 9,
+      "level": "Avançado",
+      "englishText": "A robust CI/CD pipeline is crucial for modern software development agility.",
+      "portugueseText": "Um pipeline de CI/CD robusto é crucial para a agilidade do desenvolvimento de software moderno."
+    },
+    {
+      "id": 10,
+      "level": "Avançado",
+      "englishText": "Despite the initial challenges, refactoring the legacy code resulted in significant performance improvements.",
+      "portugueseText": "Apesar dos desafios iniciais, a refatoração do código legado resultou em melhorias significativas de desempenho."
+    },
+    {
+      "id": 11,
+      "level": "Iniciante",
+      "englishText": "My name is Carlos.",
+      "portugueseText": "Meu nome é Carlos."
+    },
+    {
+      "id": 12,
+      "level": "Iniciante",
+      "englishText": "What time is it?",
+      "portugueseText": "Que horas são?"
+    },
+    {
+      "id": 13,
+      "level": "Iniciante",
+      "englishText": "I need help with my luggage.",
+      "portugueseText": "Eu preciso de ajuda com minha bagagem."
+    },
+    {
+      "id": 14,
+      "level": "Iniciante",
+      "englishText": "How much does this cost?",
+      "portugueseText": "Quanto custa isto?"
+    },
+    {
+      "id": 15,
+      "level": "Iniciante",
+      "englishText": "The weather is beautiful today.",
+      "portugueseText": "O tempo está lindo hoje."
+    },
+    {
+      "id": 16,
+      "level": "Iniciante",
+      "englishText": "Can you speak slowly, please?",
+      "portugueseText": "Você pode falar devagar, por favor?"
+    },
+    {
+      "id": 17,
+      "level": "Iniciante",
+      "englishText": "I am learning English.",
+      "portugueseText": "Eu estou aprendendo inglês."
+    },
+    {
+      "id": 18,
+      "level": "Iniciante",
+      "englishText": "This is my family.",
+      "portugueseText": "Esta é minha família."
+    },
+    {
+      "id": 19,
+      "level": "Iniciante",
+      "englishText": "See you tomorrow.",
+      "portugueseText": "Até amanhã."
+    },
+    {
+      "id": 20,
+      "level": "Iniciante",
+      "englishText": "Have a nice day!",
+      "portugueseText": "Tenha um bom dia!"
+    },
+    {
+      "id": 21,
+      "level": "Pessoal",
+      "englishText": "Claudia is learning Asp.Net Core with me. She is loving it!",
+      "portugueseText": "Claudia está aprendendo Asp.Net Core comigo. Ela está adorando!"
+    },
+    {
+      "id": 22,
+      "level": "Pessoal",
+      "englishText": "The text in Portuguese should be read in Brazilian Portuguese.",
+      "portugueseText": "O texto em português deve ser lido em português do Brasil."
+    }
+  ]
+}
