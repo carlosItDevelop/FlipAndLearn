@@ -1,0 +1,325 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import { Eye, EyeOff, Volume2, ChevronLeft, ChevronRight, BookOpen, Plus, Loader2, X } from 'lucide-react';
+
+// --- Nosso "Banco de Dados" Inicial em JSON ---
+const initialLessonsData = [
+    // 1-10 (Existing)
+    { "id": 1, "level": "Iniciante", "englishText": "The book is on the table.", "portugueseText": "O livro está sobre a mesa." },
+    { "id": 2, "level": "Intermediário", "englishText": "Software architecture is the set of fundamental structures of a software system.", "portugueseText": "Arquitetura de software é o conjunto de estruturas fundamentais de um sistema de software." },
+    { "id": 3, "level": "Intermediário", "englishText": "To be a good software architect, you need to understand the business requirements deeply.", "portugueseText": "Para ser um bom arquiteto de software, você precisa entender profundamente os requisitos de negócio." },
+    { "id": 4, "level": "Avançado", "englishText": "Leveraging CQRS and event sourcing can lead to highly scalable and resilient systems, but it introduces complexity.", "portugueseText": "Aproveitar CQRS e event sourcing pode levar a sistemas altamente escaláveis e resilientes, mas introduz complexidade." },
+    { "id": 5, "level": "Iniciante", "englishText": "I would like to order a coffee, please.", "portugueseText": "Eu gostaria de pedir um café, por favor." },
+    { "id": 6, "level": "Iniciante", "englishText": "Where is the nearest train station?", "portugueseText": "Onde é a estação de trem mais próxima?" },
+    { "id": 7, "level": "Intermediário", "englishText": "The team is deploying the new feature to the production environment.", "portugueseText": "A equipe está implantando o novo recurso no ambiente de produção." },
+    { "id": 8, "level": "Intermediário", "englishText": "Learning a new language opens up a world of opportunities.", "portugueseText": "Aprender um novo idioma abre um mundo de oportunidades." },
+    { "id": 9, "level": "Avançado", "englishText": "A robust CI/CD pipeline is crucial for modern software development agility.", "portugueseText": "Um pipeline de CI/CD robusto é crucial para a agilidade do desenvolvimento de software moderno." },
+    { "id": 10, "level": "Avançado", "englishText": "Despite the initial challenges, refactoring the legacy code resulted in significant performance improvements.", "portugueseText": "Apesar dos desafios iniciais, a refatoração do código legado resultou em melhorias significativas de desempenho." },
+    // 11-50 (New)
+    { "id": 11, "level": "Iniciante", "englishText": "My name is Carlos.", "portugueseText": "Meu nome é Carlos." },
+    { "id": 12, "level": "Iniciante", "englishText": "What time is it?", "portugueseText": "Que horas são?" },
+    { "id": 13, "level": "Iniciante", "englishText": "I need help with my luggage.", "portugueseText": "Eu preciso de ajuda com minha bagagem." },
+    { "id": 14, "level": "Iniciante", "englishText": "How much does this cost?", "portugueseText": "Quanto custa isto?" },
+    { "id": 15, "level": "Iniciante", "englishText": "The weather is beautiful today.", "portugueseText": "O tempo está lindo hoje." },
+    { "id": 16, "level": "Iniciante", "englishText": "Can you speak slowly, please?", "portugueseText": "Você pode falar devagar, por favor?" },
+    { "id": 17, "level": "Iniciante", "englishText": "I am learning English.", "portugueseText": "Eu estou aprendendo inglês." },
+    { "id": 18, "level": "Iniciante", "englishText": "This is my family.", "portugueseText": "Esta é minha família." },
+    { "id": 19, "level": "Iniciante", "englishText": "See you tomorrow.", "portugueseText": "Até amanhã." },
+    { "id": 20, "level": "Iniciante", "englishText": "Have a nice day!", "portugueseText": "Tenha um bom dia!" },
+    { "id": 21, "level": "Intermediário", "englishText": "The database migration script failed last night.", "portugueseText": "O script de migração do banco de dados falhou na noite passada." },
+    { "id": 22, "level": "Intermediário", "englishText": "We need to optimize the query to improve performance.", "portugueseText": "Nós precisamos otimizar a consulta para melhorar o desempenho." },
+    { "id": 23, "level": "Intermediário", "englishText": "What are the main advantages of using this framework?", "portugueseText": "Quais são as principais vantagens de usar este framework?" },
+    { "id": 24, "level": "Intermediário", "englishText": "The project deadline is approaching quickly.", "portugueseText": "O prazo do projeto está se aproximando rapidamente." },
+    { "id": 25, "level": "Intermediário", "englishText": "I have been working as a software architect for ten years.", "portugueseText": "Eu trabalho como arquiteto de software há dez anos." },
+    { "id": 26, "level": "Intermediário", "englishText": "Could you please review my pull request?", "portugueseText": "Você poderia, por favor, revisar meu pull request?" },
+    { "id": 27, "level": "Intermediário", "englishText": "Effective communication is key to a successful team.", "portugueseText": "Comunicação eficaz é a chave para uma equipe de sucesso." },
+    { "id": 28, "level": "Intermediário", "englishText": "Let's schedule a meeting to discuss the requirements.", "portugueseText": "Vamos agendar uma reunião para discutir os requisitos." },
+    { "id": 29, "level": "Intermediário", "englishText": "The application is not responding.", "portugueseText": "A aplicação não está respondendo." },
+    { "id": 30, "level": "Intermediário", "englishText": "I'm looking forward to our trip to the beach.", "portugueseText": "Estou ansioso para nossa viagem à praia." },
+    { "id": 31, "level": "Avançado", "englishText": "Idempotency is a critical property for handlers in a distributed event-driven architecture.", "portugueseText": "A idempotência é uma propriedade crítica para handlers em uma arquitetura distribuída orientada a eventos." },
+    { "id": 32, "level": "Avançado", "englishText": "The CAP theorem forces a choice between consistency and availability during a network partition.", "portugueseText": "O teorema CAP força uma escolha entre consistência e disponibilidade durante uma partição de rede." },
+    { "id": 33, "level": "Avançado", "englishText": "Implementing a circuit breaker pattern can prevent cascading failures in microservices.", "portugueseText": "Implementar um padrão de circuit breaker pode prevenir falhas em cascata em microsserviços." },
+    { "id": 34, "level": "Avançado", "englishText": "The nuances of garbage collection in high-performance applications cannot be overstated.", "portugueseText": "As nuances da coleta de lixo em aplicações de alto desempenho não podem ser exageradas." },
+    { "id": 35, "level": "Avançado", "englishText": "He had to delve into the intricacies of the legacy system to debug the elusive issue.", "portugueseText": "Ele teve que mergulhar nas complexidades do sistema legado para depurar o problema elusivo." },
+    { "id": 36, "level": "Avançado", "englishText": "The proliferation of IoT devices presents both opportunities and significant security challenges.", "portugueseText": "A proliferação de dispositivos IoT apresenta tanto oportunidades quanto desafios de segurança significativos." },
+    { "id": 37, "level": "Avançado", "englishText": "Quantum computing threatens to render current cryptographic standards obsolete.", "portugueseText": "A computação quântica ameaça tornar os padrões criptográficos atuais obsoletos." },
+    { "id": 38, "level": "Avançado", "englishText": "The committee's decision was predicated on a thorough analysis of the economic data.", "portugueseText": "A decisão do comitê foi baseada em uma análise completa dos dados econômicos." },
+    { "id": 39, "level": "Avançado", "englishText": "They reached an impasse in the negotiations, with neither side willing to compromise.", "portugueseText": "Eles chegaram a um impasse nas negociações, com nenhum dos lados disposto a ceder." },
+    { "id": 40, "level": "Avançado", "englishText": "To remain competitive, the company must perpetually innovate.", "portugueseText": "Para se manter competitiva, a empresa deve inovar perpetuamente." },
+    { "id": 41, "level": "Iniciante", "englishText": "The sky is blue.", "portugueseText": "O céu é azul." },
+    { "id": 42, "level": "Intermediário", "englishText": "I'm reading a book about artificial intelligence.", "portugueseText": "Estou lendo um livro sobre inteligência artificial." },
+    { "id": 43, "level": "Avançado", "englishText": "The philosophical implications of sentient AI are profound.", "portugueseText": "As implicações filosóficas de uma IA senciente são profundas." },
+    { "id": 44, "level": "Iniciante", "englishText": "My favorite food is pizza.", "portugueseText": "Minha comida favorita é pizza." },
+    { "id": 45, "level": "Intermediário", "englishText": "We should refactor this component to make it more reusable.", "portugueseText": "Deveríamos refatorar este componente para torná-lo mais reutilizável." },
+    { "id": 46, "level": "Avançado", "englishText": "The system exhibits emergent behavior that was not explicitly programmed.", "portugueseText": "O sistema exibe um comportamento emergente que não foi explicitamente programado." },
+    { "id": 47, "level": "Iniciante", "englishText": "I go to the gym three times a week.", "portugueseText": "Eu vou à academia três vezes por semana." },
+    { "id": 48, "level": "Intermediário", "englishText": "The API documentation is unclear about this endpoint.", "portugueseText": "A documentação da API não é clara sobre este endpoint." },
+    { "id": 49, "level": "Avançado", "englishText": "Orthogonality in software design reduces coupling and improves maintainability.", "portugueseText": "A ortogonalidade no design de software reduz o acoplamento e melhora a manutenibilidade." },
+    { "id": 50, "level": "Intermediário", "englishText": "I'm trying to connect to the database, but I'm getting an error.", "portugueseText": "Estou tentando me conectar ao banco de dados, mas estou recebendo um erro." }
+];
+
+// --- Componente do Modal ---
+function AddLessonModal({ isOpen, onClose, onAddLesson }) {
+    const [portugueseText, setPortugueseText] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleAdd = async () => {
+        if (!portugueseText.trim()) {
+            setError("Por favor, digite um texto.");
+            return;
+        }
+        setIsLoading(true);
+        setError("");
+
+        try {
+            // --- Chamada à API do Gemini para tradução ---
+            const prompt = `Translate the following sentence from Portuguese to English. Only return the translated text, without any introductory phrases. The text is: "${portugueseText}"`;
+            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // Deixe em branco, será fornecido pelo ambiente
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Erro na API: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.candidates && result.candidates.length > 0) {
+                const englishText = result.candidates[0].content.parts[0].text.trim();
+                onAddLesson({
+                    portugueseText,
+                    englishText,
+                    level: "Pessoal", // Nível para itens adicionados pelo usuário
+                    id: Date.now()
+                });
+                setPortugueseText("");
+                onClose();
+            } else {
+                throw new Error("A resposta da API de tradução está vazia.");
+            }
+        } catch (e) {
+            setError("Não foi possível traduzir o texto. Tente novamente.");
+            console.error(e);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+            <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+                <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-xl font-bold text-slate-800">Adicionar Nova Lição</h2>
+                    <button onClick={onClose} className="text-slate-500 hover:text-slate-800">
+                        <X size={24} />
+                    </button>
+                </div>
+                <p className="text-slate-600 mb-4">Digite o texto em português. A tradução para o inglês será gerada automaticamente.</p>
+                <textarea
+                    value={portugueseText}
+                    onChange={(e) => setPortugueseText(e.target.value)}
+                    className="w-full h-28 p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                    placeholder="Ex: Eu amo programar em .NET e usar SQL Server."
+                />
+                {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                <div className="flex justify-end gap-3 mt-4">
+                    <button onClick={onClose} className="px-4 py-2 bg-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-300">
+                        Cancelar
+                    </button>
+                    <button
+                        onClick={handleAdd}
+                        disabled={isLoading}
+                        className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 disabled:bg-indigo-300 flex items-center gap-2"
+                    >
+                        {isLoading ? <Loader2 className="animate-spin" size={20} /> : null}
+                        {isLoading ? "Traduzindo..." : "Adicionar"}
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+// --- Componente Principal do App ---
+export default function App() {
+  const [lessons, setLessons] = useState(initialLessonsData);
+  const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
+  const [isTranslationVisible, setIsTranslationVisible] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [levelFilter, setLevelFilter] = useState("Todos");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Filtra as lições com base no nível selecionado
+  const filteredLessons = useMemo(() => {
+    if (levelFilter === "Todos") {
+        return lessons;
+    }
+    return lessons.filter(lesson => lesson.level === levelFilter);
+  }, [lessons, levelFilter]);
+  
+  const currentLesson = filteredLessons[currentLessonIndex];
+
+  // Reseta o índice ao mudar o filtro
+  useEffect(() => {
+    setCurrentLessonIndex(0);
+  }, [levelFilter]);
+
+  // Reseta a visibilidade da tradução ao mudar de lição
+  useEffect(() => {
+    setIsTranslationVisible(false);
+  }, [currentLessonIndex, levelFilter]);
+
+  const goToNextLesson = () => {
+    if (currentLessonIndex < filteredLessons.length - 1) {
+      setCurrentLessonIndex(currentLessonIndex + 1);
+    }
+  };
+
+  const goToPrevLesson = () => {
+    if (currentLessonIndex > 0) {
+      setCurrentLessonIndex(currentLessonIndex - 1);
+    }
+  };
+
+  const speak = (text, lang) => {
+    if ('speechSynthesis' in window && !isSpeaking) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.rate = 0.9;
+      utterance.onstart = () => setIsSpeaking(true);
+      utterance.onend = () => setIsSpeaking(false);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert("Seu navegador não suporta a síntese de voz ou já está falando.");
+    }
+  };
+  
+  const handleAddLesson = (newLesson) => {
+      setLessons(prevLessons => [newLesson, ...prevLessons]);
+      setLevelFilter("Todos"); // Volta para a visualização de todos
+      setCurrentLessonIndex(0); // Mostra a nova lição adicionada
+  };
+
+  return (
+    <>
+      <AddLessonModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        onAddLesson={handleAddLesson}
+      />
+      <div className="flex items-center justify-center min-h-screen bg-slate-900 font-sans p-4">
+        <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+          
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 border-b pb-4 border-slate-200">
+            <div className="flex items-center gap-2">
+              <BookOpen className="text-indigo-600" size={24} />
+              <h1 className="text-2xl font-bold text-slate-800">Flip & Learn</h1>
+            </div>
+            <div className="flex items-center gap-3 w-full sm:w-auto">
+                <select 
+                    value={levelFilter}
+                    onChange={(e) => setLevelFilter(e.target.value)}
+                    className="w-full bg-slate-100 border-slate-200 border-2 rounded-md p-2 font-semibold text-slate-600 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                >
+                    <option value="Todos">Todos os Níveis</option>
+                    <option value="Iniciante">Iniciante</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
+                    <option value="Pessoal">Pessoal</option>
+                </select>
+                <button onClick={() => setIsModalOpen(true)} title="Adicionar Nova Lição" className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+                    <Plus size={24} />
+                </button>
+            </div>
+          </div>
+
+          {currentLesson ? (
+            <>
+              <div className="my-6 min-h-[220px]">
+                <div className="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                  <p className="text-xl md:text-2xl font-semibold text-slate-800 leading-tight">
+                    {currentLesson.englishText}
+                  </p>
+                </div>
+                
+                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isTranslationVisible ? 'max-h-96 mt-4 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  {isTranslationVisible && (
+                     <div className="bg-sky-50 p-4 rounded-lg border-l-4 border-sky-500">
+                      <p className="text-lg md:text-xl text-slate-700 leading-tight">
+                        {currentLesson.portugueseText}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <button
+                  onClick={() => setIsTranslationVisible(!isTranslationVisible)}
+                  className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-200 text-slate-700 font-semibold rounded-lg hover:bg-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400"
+                >
+                  {isTranslationVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+                  <span>{isTranslationVisible ? 'Ocultar' : 'Mostrar'}</span>
+                </button>
+                <button
+                  onClick={() => speak(currentLesson.englishText, 'en-US')}
+                  disabled={isSpeaking}
+                  className="flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-indigo-300"
+                >
+                  <Volume2 size={20} />
+                  <span>Inglês</span>
+                </button>
+                 <button
+                  onClick={() => speak(currentLesson.portugueseText, 'pt-BR')}
+                  disabled={isSpeaking}
+                  className="flex items-center justify-center gap-2 px-4 py-2 bg-sky-500 text-white font-semibold rounded-lg hover:bg-sky-600 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-400 disabled:bg-sky-300"
+                >
+                  <Volume2 size={20} />
+                  <span>Português</span>
+                </button>
+              </div>
+
+              <div className="flex justify-between items-center pt-4 border-t border-slate-200">
+                <button
+                  onClick={goToPrevLesson}
+                  disabled={currentLessonIndex === 0}
+                  className="flex items-center gap-2 px-4 py-2 font-semibold text-slate-600 rounded-lg hover:bg-slate-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  <ChevronLeft size={20} />
+                  Anterior
+                </button>
+                <span className="text-slate-500 font-medium">
+                  Lição {currentLessonIndex + 1} de {filteredLessons.length}
+                </span>
+                <button
+                  onClick={goToNextLesson}
+                  disabled={currentLessonIndex === filteredLessons.length - 1}
+                  className="flex items-center gap-2 px-4 py-2 font-semibold text-slate-600 rounded-lg hover:bg-slate-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Próxima
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="text-center my-20">
+                <p className="text-slate-500 text-lg">Nenhuma lição encontrada para o nível "{levelFilter}".</p>
+                <p className="text-slate-400 mt-2">Tente selecionar outro nível ou adicionar uma nova lição.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}

@@ -1,0 +1,121 @@
+Guia: Criando o "Flip & Learn" com Angular (Estrutura Organizada)
+Este guia irá orientá-lo na criação do aplicativo "Flip & Learn" com uma estrutura de pastas profissional, separando o frontend (Angular) do backend (json-server).
+
+Estrutura de Pastas do Projeto
+Vamos organizar nosso projeto da seguinte forma para manter tudo limpo e separado:
+
+flip-and-learn-project/
+├── backend/
+│   └── db.json
+└── frontend/
+    └── (aqui ficará todo o nosso projeto Angular)
+
+Passo 1: Preparar a Estrutura de Pastas
+Abra seu terminal e crie a pasta principal do projeto.
+
+mkdir flip-and-learn-project
+cd flip-and-learn-project
+
+Dentro dela, crie as pastas backend e frontend.
+
+mkdir backend frontend
+
+Passo 2: Configurar o Frontend (Angular)
+Agora, vamos criar e configurar o projeto Angular dentro da pasta frontend.
+
+Navegue para a pasta frontend:
+
+cd frontend
+
+Crie o projeto Angular aqui dentro:
+Use o comando para a versão que desejar (exemplo com a versão 17):
+
+# Para o Angular 17
+npx @angular/cli@17 new . --style=css --standalone=true --routing=false
+
+# Para a versão mais recente
+# ng new . --style=css --standalone=true --routing=false
+
+Atenção: Usamos new . (com um ponto) para criar o projeto no diretório atual (frontend), em vez de criar uma nova subpasta.
+
+Instale e configure o Tailwind CSS:
+(Ainda dentro da pasta frontend)
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+
+Configure os caminhos do Tailwind:
+Abra o arquivo tailwind.config.js e substitua seu conteúdo por:
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+Adicione as diretivas do Tailwind:
+Abra o arquivo src/styles.css e adicione as seguintes linhas no topo:
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+Passo 3: Implementar a Lógica do Frontend
+Os passos para criar o modelo, o serviço e o componente são os mesmos de antes. Execute todos os comandos a seguir de dentro da pasta frontend.
+
+Crie o modelo de dados:
+Crie o arquivo src/app/lesson.model.ts com o mesmo conteúdo da versão anterior.
+
+Gere e implemente o LessonService:
+
+ng generate service services/lesson
+
+Cole o código do serviço que busca de http://localhost:3001/lessons.
+
+Atualize o AppComponent:
+Copie e cole a lógica (.ts) e o template (.html) do AppComponent da versão anterior. Não se esqueça de adicionar HttpClientModule e FormsModule aos imports do componente.
+
+Passo 4: Configurar o Backend (json-server)
+Navegue para a pasta backend:
+Abra um novo terminal ou volte para a pasta raiz (flip-and-learn-project) e execute:
+
+cd backend
+
+Crie o arquivo db.json:
+Dentro da pasta backend, crie o arquivo db.json e cole a lista de 50 lições dentro de um objeto lessons, como no guia anterior.
+
+Passo 5: Rodar a Aplicação (Frontend e Backend)
+Agora você precisará de dois terminais abertos simultaneamente.
+
+1. No Terminal 1 (para o Backend):
+
+Navegue até a pasta backend.
+
+# Se já não estiver lá
+cd caminho/para/flip-and-learn-project/backend
+
+Inicie o json-server:
+
+npx json-server --watch db.json --port 3001
+
+Este terminal agora está servindo sua API fake.
+
+2. No Terminal 2 (para o Frontend):
+
+Navegue até a pasta frontend.
+
+# Se já não estiver lá
+cd caminho/para/flip-and-learn-project/frontend
+
+Inicie o servidor de desenvolvimento do Angular:
+
+ng serve
+
+Abra o navegador no endereço que o Angular indicar (geralmente http://localhost:4200).
+
+Pronto! Agora sua aplicação está rodando com uma estrutura de pastas profissional e organizada.
