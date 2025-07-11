@@ -1,0 +1,149 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <div class="flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+        <h1 class="text-4xl font-bold text-gray-800">{{ title }}</h1>
+      </div>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Aprenda inglês de forma interativa com flashcards inteligentes. Clique nos cartões para alternar entre português e inglês.
+      </p>
+    </header>
+
+    <!-- Controls -->
+    <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6 mb-8">
+      <!-- Filter -->
+      <div class="flex items-center space-x-2">
+        <label for="filter" class="text-sm font-medium text-gray-700">Nível:</label>
+        <select 
+          id="filter"
+          [(ngModel)]="selectedFilter" 
+          (ngModelChange)="onFilterChange()"
+          class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          <option *ngFor="let option of filterOptions" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Add Lesson Button -->
+      <button
+        (click)="openModal()"
+        class="flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+        </svg>
+        Adicionar Lição
+      </button>
+
+      <!-- Audio Support Indicator -->
+      <div *ngIf="!isAudioSupported()" class="flex items-center text-yellow-600 text-sm">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 15.5c-.77.833.192 2.5 1.732 2.5z"/>
+        </svg>
+        Áudio não disponível neste navegador
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div *ngIf="progress$ | async as progress" class="max-w-md mx-auto mb-8">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm font-medium text-gray-700">Progresso</span>
+        <span class="text-sm text-gray-600">{{ progress.current }} / {{ progress.total }}</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2">
+        <div 
+          class="bg-blue-600 h-2 rounded-full transition-all duration-300 ease-out"
+          [style.width.%]="progress.percentage">
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto">
+      <!-- Flashcard -->
+      <div *ngIf="currentLesson$ | async as lesson; else noLessons" class="mb-8">
+        <app-flashcard 
+          [lesson]="lesson" 
+          [showTranslation]="showTranslation">
+        </app-flashcard>
+      </div>
+
+      <!-- Navigation -->
+      <div *ngIf="filteredLessons$ | async as lessons" class="flex justify-center items-center space-x-4 mb-8">
+        <button
+          (click)="previousLesson()"
+          [disabled]="lessons.length === 0"
+          class="flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Anterior
+        </button>
+
+        <span class="px-4 py-2 bg-white rounded-md shadow-sm border border-gray-200 text-gray-700 font-medium">
+          {{ currentLessonIndex + 1 }} de {{ lessons.length }}
+        </span>
+
+        <button
+          (click)="nextLesson()"
+          [disabled]="lessons.length === 0"
+          class="flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+          Próximo
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Statistics -->
+      <div *ngIf="getLevelStats() | async as stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+        <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-200">
+          <div class="text-2xl font-bold text-green-600">{{ stats['Iniciante'] }}</div>
+          <div class="text-sm text-gray-600">Iniciante</div>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-200">
+          <div class="text-2xl font-bold text-yellow-600">{{ stats['Intermediário'] }}</div>
+          <div class="text-sm text-gray-600">Intermediário</div>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-200">
+          <div class="text-2xl font-bold text-red-600">{{ stats['Avançado'] }}</div>
+          <div class="text-sm text-gray-600">Avançado</div>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-4 text-center border border-gray-200">
+          <div class="text-2xl font-bold text-blue-600">{{ stats['Pessoal'] }}</div>
+          <div class="text-sm text-gray-600">Pessoal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Lessons Template -->
+  <ng-template #noLessons>
+    <div class="text-center py-12">
+      <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+      </svg>
+      <h3 class="text-lg font-medium text-gray-700 mb-2">Nenhuma lição encontrada</h3>
+      <p class="text-gray-500 mb-4">Não há lições disponíveis para o filtro selecionado.</p>
+      <button
+        (click)="openModal()"
+        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+        </svg>
+        Adicionar Primeira Lição
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Modal -->
+  <app-add-lesson-modal
+    [isOpen]="isModalOpen"
+    (closeModal)="closeModal()"
+    (lessonAdded)="onLessonAdded($event)">
+  </app-add-lesson-modal>
+</div>

@@ -1,0 +1,86 @@
+<div class="relative w-full max-w-2xl mx-auto">
+  <!-- Flashcard Container -->
+  <div class="relative h-64 md:h-80 perspective-1000">
+    <div 
+      class="flashcard-inner w-full h-full relative transition-transform duration-700 transform-style-preserve-3d cursor-pointer"
+      [class.is-flipped]="isFlipped"
+      (click)="flipCard()">
+      
+      <!-- Front Side (Portuguese) -->
+      <div class="flashcard-face flashcard-front absolute inset-0 w-full h-full bg-white rounded-lg shadow-lg p-6 backface-hidden border-2 border-gray-200 hover:border-blue-300 transition-colors">
+        <div class="flex flex-col h-full">
+          <!-- Header -->
+          <div class="flex justify-between items-center mb-4">
+            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full" [ngClass]="getDifficultyColor()">
+              {{ lesson.level }}
+            </span>
+            <div class="flex items-center space-x-2">
+              <button
+                (click)="onPlayAudio(); $event.stopPropagation()"
+                [disabled]="isPlayingAudio"
+                class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Ouvir pronúncia em inglês">
+                <svg *ngIf="!isPlayingAudio" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M5 15l4-4 4 4V9l-4 4-4-4v6z"/>
+                </svg>
+                <svg *ngIf="isPlayingAudio" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Content -->
+          <div class="flex-1 flex items-center justify-center">
+            <p class="text-lg md:text-xl text-center text-gray-800 leading-relaxed">
+              {{ lesson.portugueseText }}
+            </p>
+          </div>
+          
+          <!-- Footer -->
+          <div class="flex justify-center mt-4">
+            <p class="text-sm text-gray-500">Clique para ver a tradução</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Back Side (English) -->
+      <div class="flashcard-face flashcard-back absolute inset-0 w-full h-full bg-blue-50 rounded-lg shadow-lg p-6 backface-hidden border-2 border-blue-200 rotate-y-180">
+        <div class="flex flex-col h-full">
+          <!-- Header -->
+          <div class="flex justify-between items-center mb-4">
+            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full" [ngClass]="getDifficultyColor()">
+              {{ lesson.level }}
+            </span>
+            <div class="flex items-center space-x-2">
+              <button
+                (click)="onPlayAudio(); $event.stopPropagation()"
+                [disabled]="isPlayingAudio"
+                class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-100 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Ouvir pronúncia em inglês">
+                <svg *ngIf="!isPlayingAudio" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M5 15l4-4 4 4V9l-4 4-4-4v6z"/>
+                </svg>
+                <svg *ngIf="isPlayingAudio" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Content -->
+          <div class="flex-1 flex items-center justify-center">
+            <p class="text-lg md:text-xl text-center text-gray-800 leading-relaxed font-medium">
+              {{ lesson.englishText }}
+            </p>
+          </div>
+          
+          <!-- Footer -->
+          <div class="flex justify-center mt-4">
+            <p class="text-sm text-blue-600">Clique para voltar ao português</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

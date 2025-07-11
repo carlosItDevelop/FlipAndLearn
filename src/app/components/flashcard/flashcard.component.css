@@ -1,0 +1,43 @@
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.flashcard-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  transition: all 0.3s ease;
+}
+
+.flashcard-front:hover,
+.flashcard-back:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure the back face is properly rotated */
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+/* When flipped, maintain the rotation */
+.flashcard-inner.is-flipped .flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.flashcard-inner.is-flipped .flashcard-front {
+  transform: rotateY(180deg);
+}
