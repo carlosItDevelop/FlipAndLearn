@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Observable, combineLatest, map } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 import { LessonService } from './services/lesson.service';
 import { AudioService } from './services/audio.service';
@@ -80,25 +81,25 @@ export class AppComponent implements OnInit {
   }
 
   previousLesson(): void {
-    this.filteredLessons$.subscribe(lessons => {
+    this.filteredLessons$.pipe(take(1)).subscribe((lessons: Lesson[]) => {
       if (lessons.length > 0) {
         this.currentLessonIndex = this.currentLessonIndex > 0 
           ? this.currentLessonIndex - 1 
           : lessons.length - 1;
         this.initializeData();
       }
-    }).unsubscribe();
+    });
   }
 
   nextLesson(): void {
-    this.filteredLessons$.subscribe(lessons => {
+    this.filteredLessons$.pipe(take(1)).subscribe((lessons: Lesson[]) => {
       if (lessons.length > 0) {
         this.currentLessonIndex = this.currentLessonIndex < lessons.length - 1 
           ? this.currentLessonIndex + 1 
           : 0;
         this.initializeData();
       }
-    }).unsubscribe();
+    });
   }
 
   toggleTranslation(): void {
