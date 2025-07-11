@@ -15,15 +15,30 @@
               {{ lesson.level }}
             </span>
             <div class="flex items-center space-x-2">
+              <!-- Portuguese Audio Button -->
               <button
-                (click)="onPlayAudio(); $event.stopPropagation()"
-                [disabled]="isPlayingAudio"
-                class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                title="Ouvir pronúncia em inglês">
-                <svg *ngIf="!isPlayingAudio" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                (click)="onPlayPortugueseAudio(); $event.stopPropagation()"
+                [disabled]="isPlayingPortugueseAudio || isPlayingEnglishAudio"
+                class="p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Ouvir em português">
+                <svg *ngIf="!isPlayingPortugueseAudio" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M5 15l4-4 4 4V9l-4 4-4-4v6z"/>
                 </svg>
-                <svg *ngIf="isPlayingAudio" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg *ngIf="isPlayingPortugueseAudio" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+              </button>
+              
+              <!-- English Audio Button -->
+              <button
+                (click)="onPlayEnglishAudio(); $event.stopPropagation()"
+                [disabled]="isPlayingPortugueseAudio || isPlayingEnglishAudio"
+                class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Ouvir em inglês">
+                <svg *ngIf="!isPlayingEnglishAudio" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M5 15l4-4 4 4V9l-4 4-4-4v6z"/>
+                </svg>
+                <svg *ngIf="isPlayingEnglishAudio" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                 </svg>
               </button>
@@ -53,15 +68,30 @@
               {{ lesson.level }}
             </span>
             <div class="flex items-center space-x-2">
+              <!-- Portuguese Audio Button -->
               <button
-                (click)="onPlayAudio(); $event.stopPropagation()"
-                [disabled]="isPlayingAudio"
-                class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-100 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                title="Ouvir pronúncia em inglês">
-                <svg *ngIf="!isPlayingAudio" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                (click)="onPlayPortugueseAudio(); $event.stopPropagation()"
+                [disabled]="isPlayingPortugueseAudio || isPlayingEnglishAudio"
+                class="p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Ouvir em português">
+                <svg *ngIf="!isPlayingPortugueseAudio" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M5 15l4-4 4 4V9l-4 4-4-4v6z"/>
                 </svg>
-                <svg *ngIf="isPlayingAudio" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg *ngIf="isPlayingPortugueseAudio" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+              </button>
+              
+              <!-- English Audio Button -->
+              <button
+                (click)="onPlayEnglishAudio(); $event.stopPropagation()"
+                [disabled]="isPlayingPortugueseAudio || isPlayingEnglishAudio"
+                class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-100 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Ouvir em inglês">
+                <svg *ngIf="!isPlayingEnglishAudio" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142M5 15l4-4 4 4V9l-4 4-4-4v6z"/>
+                </svg>
+                <svg *ngIf="isPlayingEnglishAudio" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                 </svg>
               </button>

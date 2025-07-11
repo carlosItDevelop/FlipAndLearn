@@ -16,7 +16,8 @@ export class FlashcardComponent {
   @Output() playAudio = new EventEmitter<string>();
 
   isFlipped = false;
-  isPlayingAudio = false;
+  isPlayingPortugueseAudio = false;
+  isPlayingEnglishAudio = false;
 
   constructor(private audioService: AudioService) {}
 
@@ -24,21 +25,29 @@ export class FlashcardComponent {
     this.isFlipped = !this.isFlipped;
   }
 
-  async onPlayAudio(): Promise<void> {
-    if (this.isPlayingAudio) return;
+  async onPlayPortugueseAudio(): Promise<void> {
+    if (this.isPlayingPortugueseAudio || this.isPlayingEnglishAudio) return;
     
-    this.isPlayingAudio = true;
+    this.isPlayingPortugueseAudio = true;
     try {
-      // Se estiver mostrando a tradução (português), falar em português
-      // Se não estiver mostrando a tradução (inglês), falar em inglês
-      const textToSpeak = this.showTranslation ? this.lesson.portugueseText : this.lesson.englishText;
-      const language = this.showTranslation ? 'pt-BR' : 'en-US';
-      
-      await this.audioService.speak(textToSpeak, language);
+      await this.audioService.speak(this.lesson.portugueseText, 'pt-BR');
     } catch (error) {
-      console.error('Audio playback failed:', error);
+      console.error('Portuguese audio playback failed:', error);
     } finally {
-      this.isPlayingAudio = false;
+      this.isPlayingPortugueseAudio = false;
+    }
+  }
+
+  async onPlayEnglishAudio(): Promise<void> {
+    if (this.isPlayingEnglishAudio || this.isPlayingPortugueseAudio) return;
+    
+    this.isPlayingEnglishAudio = true;
+    try {
+      await this.audioService.speak(this.lesson.englishText, 'en-US');
+    } catch (error) {
+      console.error('English audio playback failed:', error);
+    } finally {
+      this.isPlayingEnglishAudio = false;
     }
   }
 
