@@ -8,7 +8,48 @@
         </svg>
         <h1 class="text-4xl font-bold text-gray-800">{{ title }}</h1>
       </div>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      
+      <!-- Navigation Tabs -->
+      <div class="flex justify-center mb-4">
+        <nav class="flex bg-white rounded-lg shadow-md p-1">
+          <button 
+            (click)="currentView = 'study'"
+            [class]="currentView === 'study' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:text-blue-600'"
+            class="px-6 py-2 rounded-md transition-all duration-200 font-medium">
+            📚 Estudar
+          </button>
+          <button 
+            (click)="currentView = 'progress'"
+            [class]="currentView === 'progress' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:text-blue-600'"
+            class="px-6 py-2 rounded-md transition-all duration-200 font-medium">
+            📊 Progresso
+          </button>
+        </nav>
+      </div>
+
+      <!-- User Progress Header (only in study view) -->
+      <div *ngIf="currentView === 'study' && (userProgress$ | async) as progress" class="bg-white rounded-lg shadow-md p-4 max-w-4xl mx-auto mb-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div>
+            <p class="text-2xl font-bold text-yellow-600">{{progress.level}}</p>
+            <p class="text-sm text-gray-600">Nível</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-orange-600">{{progress.currentStreak}}</p>
+            <p class="text-sm text-gray-600">Sequência</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-green-600">{{progress.cardsStudiedToday}}/{{progress.dailyGoal}}</p>
+            <p class="text-sm text-gray-600">Meta Diária</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-purple-600">{{progress.totalPoints}}</p>
+            <p class="text-sm text-gray-600">Pontos</p>
+          </div>
+        </div>
+      </div>
+      
+      <p *ngIf="currentView === 'study'" class="text-lg text-gray-600 max-w-2xl mx-auto">
         Aprenda inglês de forma interativa com flashcards inteligentes. Clique nos cartões para alternar entre português e inglês.
       </p>
     </header>
@@ -63,6 +104,14 @@
     </div>
 
     <!-- Main Content -->
+    
+    <!-- Progress Dashboard View -->
+    <div *ngIf="currentView === 'progress'">
+      <app-progress-dashboard></app-progress-dashboard>
+    </div>
+
+    <!-- Study View -->
+    <div *ngIf="currentView === 'study'">
     <div class="max-w-4xl mx-auto">
       <!-- Flashcard -->
       <div *ngIf="currentLesson$ | async as lesson; else noLessons" class="mb-8">
@@ -72,31 +121,74 @@
         </app-flashcard>
       </div>
 
-      <!-- Navigation -->
-      <div *ngIf="filteredLessons$ | async as lessons" class="flex justify-center items-center space-x-4 mb-8">
-        <button
-          (click)="previousLesson()"
-          [disabled]="lessons.length === 0"
-          class="flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-          </svg>
-          Anterior
-        </button>
+      <!-- Study Session Controls -->
+      <div *ngIf="filteredLessons$ | async as lessons" class="flex flex-col items-center space-y-4 mb-8">
+        <!-- Start/End Session Button -->
+        <div class="flex items-center space-x-4">
+          <button
+            *ngIf="!studySessionActive"
+            (click)="startStudySession()"
+            [disabled]="lessons.length === 0"
+            class="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium shadow-md">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            🚀 Iniciar Sessão de Estudo
+          </button>
 
-        <span class="px-4 py-2 bg-white rounded-md shadow-sm border border-gray-200 text-gray-700 font-medium">
-          {{ currentLessonIndex + 1 }} de {{ lessons.length }}
-        </span>
+          <button
+            *ngIf="studySessionActive"
+            (click)="endStudySession()"
+            class="flex items-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 font-medium shadow-md">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            ⏹️ Finalizar Sessão
+          </button>
+        </div>
 
-        <button
-          (click)="nextLesson()"
-          [disabled]="lessons.length === 0"
-          class="flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-          Próximo
-          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </button>
+        <!-- Session Status -->
+        <div *ngIf="studySessionActive" class="bg-white rounded-lg shadow-md p-4 border-l-4 border-green-400">
+          <div class="flex items-center justify-center space-x-6 text-sm">
+            <div class="text-center">
+              <p class="font-semibold text-green-600">Sessão Ativa</p>
+              <p class="text-gray-600">🎯 Estudando</p>
+            </div>
+            <div class="text-center">
+              <p class="font-semibold text-blue-600">Use "Estudei!"</p>
+              <p class="text-gray-600">Para ganhar pontos</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-center items-center space-x-4">
+          <button
+            (click)="previousLesson()"
+            [disabled]="lessons.length === 0"
+            class="flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            Anterior
+          </button>
+
+          <span class="px-4 py-2 bg-white rounded-md shadow-sm border border-gray-200 text-gray-700 font-medium">
+            {{ currentLessonIndex + 1 }} de {{ lessons.length }}
+          </span>
+
+          <button
+            (click)="nextLesson()"
+            [disabled]="lessons.length === 0"
+            [class]="studySessionActive ? 'bg-green-600 hover:bg-green-700 focus:ring-green-500' : 'bg-gray-600 hover:bg-gray-700 focus:ring-gray-500'"
+            class="flex items-center px-4 py-2 text-white rounded-md focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+            <span *ngIf="studySessionActive">Estudei! 🎯</span>
+            <span *ngIf="!studySessionActive">Próximo</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- Statistics -->
@@ -118,6 +210,7 @@
           <div class="text-sm text-gray-600">Pessoal</div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 

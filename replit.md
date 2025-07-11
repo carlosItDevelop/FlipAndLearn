@@ -84,15 +84,17 @@ Preferred communication style: Simple, everyday language.
 - **Data Persistence**: User-added lessons are permanently stored in database
 
 ### Recent Changes (January 11, 2025)
-- **Database Integration**: Added PostgreSQL database with Drizzle ORM
-- **API Backend**: Created Express.js REST API for lesson management
-- **Data Migration**: Converted from in-memory to database storage
+- **Database Migration**: Successfully migrated from PostgreSQL to JSON Server for platform independence
+- **JSON Server Integration**: All 22 lessons migrated to db.json with proper data structure  
+- **Gamification System**: Implemented comprehensive point/level/achievement system
+- **Progress Dashboard**: Added detailed statistics dashboard with charts and progress tracking
+- **Study Sessions**: Interactive study sessions with real-time progress tracking
+- **Achievement System**: 6 different achievements with progress indicators
+- **Navigation Enhancement**: Added Study/Progress view toggle with modern UI
+- **Real-time Statistics**: Live tracking of points, streaks, daily goals, and accuracy
+- **Local Storage**: Progress and achievements persist between sessions
 - **Audio Fix**: Corrected audio to play in correct language (PT/EN) based on displayed text
-- **Navigation Fix**: Fixed navigation buttons to properly navigate between lessons
-- **Gemini Removal**: Completely removed Google Gemini AI dependency
-- **Manual Input**: Modified modal to allow manual Portuguese/English input
-- **Dual Audio Buttons**: Created separate buttons for Portuguese and English audio
-- **Documentation**: Updated README.md, added .gitignore, removed environment complexity
+- **Documentation**: Updated architecture to reflect JSON Server approach
 
 ### Potential Enhancements
 - **User Authentication**: Individual user accounts and lesson management

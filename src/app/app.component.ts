@@ -7,9 +7,11 @@ import { map, take } from 'rxjs/operators';
 
 import { LessonService } from './services/lesson.service';
 import { AudioService } from './services/audio.service';
-import { Lesson, LevelFilter } from './models/lesson.model';
+import { GamificationService } from './services/gamification.service';
+import { Lesson, LevelFilter, UserProgress } from './models/lesson.model';
 import { FlashcardComponent } from './components/flashcard/flashcard.component';
 import { AddLessonModalComponent } from './components/add-lesson-modal/add-lesson-modal.component';
+import { ProgressDashboardComponent } from './components/progress-dashboard/progress-dashboard.component';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,8 @@ import { AddLessonModalComponent } from './components/add-lesson-modal/add-lesso
     HttpClientModule,
     FormsModule,
     FlashcardComponent,
-    AddLessonModalComponent
+    AddLessonModalComponent,
+    ProgressDashboardComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -37,11 +40,21 @@ export class AppComponent implements OnInit {
   filterOptions: LevelFilter[] = ['Todos', 'Iniciante', 'Intermediário', 'Avançado', 'Pessoal'];
   
   progress$!: Observable<{ current: number; total: number; percentage: number }>;
+  userProgress$!: Observable<UserProgress>;
+  
+  // Navigation state
+  currentView: 'study' | 'progress' = 'study';
+  
+  // Study session state
+  studySessionActive = false;
 
   constructor(
     private lessonService: LessonService,
-    private audioService: AudioService
-  ) {}
+    private audioService: AudioService,
+    public gamificationService: GamificationService
+  ) {
+    this.userProgress$ = this.gamificationService.getUserProgress();
+  }
 
   ngOnInit(): void {
     this.initializeData();
@@ -94,6 +107,11 @@ export class AppComponent implements OnInit {
   nextLesson(): void {
     this.filteredLessons$.pipe(take(1)).subscribe((lessons: Lesson[]) => {
       if (lessons.length > 0) {
+        // Record study progress if session is active
+        if (this.studySessionActive) {
+          this.gamificationService.recordCardStudied(true, this.getDifficultyLevel());
+        }
+        
         this.currentLessonIndex = this.currentLessonIndex < lessons.length - 1 
           ? this.currentLessonIndex + 1 
           : 0;
@@ -121,6 +139,34 @@ export class AppComponent implements OnInit {
     if (this.selectedFilter === 'Pessoal' || this.selectedFilter === 'Todos') {
       this.initializeData();
     }
+  }
+
+  startStudySession(): void {
+    this.studySessionActive = true;
+    this.gamificationService.startSession();
+  }
+
+  endStudySession(): void {
+    if (this.studySessionActive) {
+      this.studySessionActive = false;
+      this.gamificationService.endSession();
+    }
+  }
+
+  private getDifficultyLevel(): number {
+    let difficulty = 2;
+    this.currentLesson$.pipe(take(1)).subscribe(lesson => {
+      if (lesson) {
+        switch (lesson.level) {
+          case 'Iniciante': difficulty = 1; break;
+          case 'Intermediário': difficulty = 2; break;
+          case 'Avançado': difficulty = 3; break;
+          case 'Pessoal': difficulty = 2; break;
+          default: difficulty = 2;
+        }
+      }
+    });
+    return difficulty;
   }
 
   isAudioSupported(): boolean {
