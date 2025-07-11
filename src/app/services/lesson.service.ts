@@ -8,7 +8,7 @@ import { Lesson, LevelFilter } from '../models/lesson.model';
   providedIn: 'root'
 })
 export class LessonService {
-  private apiUrl = 'http://localhost:3001/api';
+  private apiUrl = '/api';
   private lessonsSubject = new BehaviorSubject<Lesson[]>([]);
   public lessons$ = this.lessonsSubject.asObservable();
 

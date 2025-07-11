@@ -7,8 +7,9 @@ const port = 3001;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5000', 'https://' + process.env.REPL_SLUG + '-5000.' + process.env.REPL_OWNER + '.repl.co'],
-  credentials: true
+  origin: ['http://localhost:5000', 'http://127.0.0.1:5000', 'http://0.0.0.0:5000'],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 app.use(express.json());
 
