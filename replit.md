@@ -27,7 +27,7 @@ Preferred communication style: Simple, everyday language.
 ## Key Components
 
 ### Core Services
-1. **LessonService**: Manages flashcard lessons with in-memory storage
+1. **LessonService**: Manages flashcard lessons with PostgreSQL database storage via REST API
 2. **AudioService**: Handles text-to-speech functionality using Web Speech API
 3. **TranslationService**: Integrates with Google Gemini AI for Portuguese-to-English translation
 
@@ -42,11 +42,12 @@ Preferred communication style: Simple, everyday language.
 
 ## Data Flow
 
-1. **Lesson Management**: Lessons are stored in-memory within LessonService
-2. **Filtering**: Real-time filtering by difficulty level (Iniciante, Intermediário, Avançado, Pessoal)
-3. **Translation**: User input in Portuguese is sent to Gemini AI for English translation
-4. **Audio**: Text-to-speech synthesis for English pronunciation practice
-5. **State Updates**: Reactive updates using RxJS observables and BehaviorSubjects
+1. **Lesson Management**: Lessons are stored persistently in PostgreSQL database
+2. **API Layer**: Express.js REST API serves lesson data to Angular frontend
+3. **Filtering**: Real-time filtering by difficulty level via database queries
+4. **Translation**: User input in Portuguese is sent to Gemini AI for English translation
+5. **Audio**: Text-to-speech synthesis for English pronunciation practice
+6. **State Updates**: Reactive updates using RxJS observables and HTTP requests
 
 ## External Dependencies
 
@@ -76,10 +77,22 @@ Preferred communication style: Simple, everyday language.
 - **Browser Compatibility**: Supports modern browsers with Web Speech API
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
 
+### Database Architecture
+- **PostgreSQL Database**: Persistent storage for lessons with proper schema
+- **Drizzle ORM**: Type-safe database operations and schema management
+- **REST API**: Express.js backend serving lesson data to Angular frontend
+- **Data Persistence**: User-added lessons are permanently stored in database
+
+### Recent Changes (January 11, 2025)
+- **Database Integration**: Added PostgreSQL database with Drizzle ORM
+- **API Backend**: Created Express.js REST API for lesson management
+- **Data Migration**: Converted from in-memory to database storage
+- **Environment Configuration**: Set up proper API key injection for Gemini
+
 ### Potential Enhancements
-- **Database Integration**: Could be extended with Drizzle ORM for data persistence
-- **User Authentication**: Potential for user-specific lesson management
-- **Progress Tracking**: Could implement learning progress and statistics
+- **User Authentication**: Individual user accounts and lesson management
+- **Progress Tracking**: Learning statistics and completion tracking
 - **Offline Support**: Service worker implementation for offline functionality
+- **Advanced Filtering**: Search functionality and custom lesson categories
 
 The application follows Angular best practices with standalone components, reactive programming patterns, and modern TypeScript features. The architecture is designed for scalability and maintainability, with clear separation of concerns between services and components.
