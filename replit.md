@@ -7,6 +7,7 @@ Flip & Learn is an interactive Angular application designed for learning English
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+User feedback: Very satisfied with gamification implementation ("Lindo!! \0/ \0/")
 
 ## System Architecture
 
