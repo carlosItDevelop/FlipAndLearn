@@ -19,7 +19,7 @@
 
     <!-- Form -->
     <form (ngSubmit)="onSubmit()" class="space-y-4">
-      <!-- Input Field -->
+      <!-- Portuguese Input -->
       <div>
         <label for="portugueseText" class="block text-sm font-medium text-gray-700 mb-2">
           Texto em Português
@@ -28,27 +28,49 @@
           id="portugueseText"
           [(ngModel)]="portugueseText"
           name="portugueseText"
-          rows="4"
+          rows="3"
           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
-          placeholder="Digite uma frase em português para ser traduzida..."
-          [disabled]="isLoading"
+          placeholder="Digite o texto em português..."
           required>
         </textarea>
+      </div>
+
+      <!-- English Input -->
+      <div>
+        <label for="englishText" class="block text-sm font-medium text-gray-700 mb-2">
+          Texto em Inglês
+        </label>
+        <textarea
+          id="englishText"
+          [(ngModel)]="englishText"
+          name="englishText"
+          rows="3"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+          placeholder="Digite o texto em inglês..."
+          required>
+        </textarea>
+      </div>
+
+      <!-- Level Selection -->
+      <div>
+        <label for="level" class="block text-sm font-medium text-gray-700 mb-2">
+          Nível de Dificuldade
+        </label>
+        <select
+          id="level"
+          [(ngModel)]="selectedLevel"
+          name="level"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          <option value="Iniciante">Iniciante</option>
+          <option value="Intermediário">Intermediário</option>
+          <option value="Avançado">Avançado</option>
+          <option value="Pessoal">Pessoal</option>
+        </select>
       </div>
 
       <!-- Error Message -->
       <div *ngIf="error" class="p-3 bg-red-50 border border-red-200 rounded-md">
         <p class="text-sm text-red-600">{{ error }}</p>
-      </div>
-
-      <!-- Info Message -->
-      <div class="p-3 bg-blue-50 border border-blue-200 rounded-md">
-        <p class="text-sm text-blue-600">
-          <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-          O texto será automaticamente traduzido para inglês usando IA.
-        </p>
       </div>
 
       <!-- Buttons -->
@@ -63,13 +85,9 @@
         
         <button
           type="submit"
-          [disabled]="isLoading || !portugueseText.trim()"
-          class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center">
-          <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          {{ isLoading ? 'Traduzindo...' : 'Adicionar Lição' }}
+          [disabled]="!portugueseText.trim() || !englishText.trim()"
+          class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+          Adicionar Lição
         </button>
       </div>
     </form>

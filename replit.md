@@ -51,10 +51,10 @@ Preferred communication style: Simple, everyday language.
 
 ## External Dependencies
 
-### AI Integration
-- **Google Gemini API**: Used for Portuguese-to-English translation
-- **API Key**: Configured through environment variables (GEMINI_API_KEY)
-- **Fallback**: Graceful degradation when API key is not available
+### Audio Integration (No external API required)
+- **Web Speech API**: Native browser API for text-to-speech
+- **No API Keys**: Works completely offline with browser support
+- **Language Support**: Portuguese (pt-BR) and English (en-US)
 
 ### Browser APIs
 - **Web Speech API**: For text-to-speech functionality
@@ -73,7 +73,7 @@ Preferred communication style: Simple, everyday language.
 - **Bundle Budgets**: Configured limits for initial bundle (500KB warning, 1MB error)
 
 ### Environment Configuration
-- **API Keys**: Environment-based configuration for Gemini API
+- **No API Keys Required**: Completely self-contained application
 - **Browser Compatibility**: Supports modern browsers with Web Speech API
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
 
@@ -87,10 +87,12 @@ Preferred communication style: Simple, everyday language.
 - **Database Integration**: Added PostgreSQL database with Drizzle ORM
 - **API Backend**: Created Express.js REST API for lesson management
 - **Data Migration**: Converted from in-memory to database storage
-- **Environment Configuration**: Set up proper API key injection for Gemini
 - **Audio Fix**: Corrected audio to play in correct language (PT/EN) based on displayed text
 - **Navigation Fix**: Fixed navigation buttons to properly navigate between lessons
-- **Documentation**: Added comprehensive README.md and .gitignore files
+- **Gemini Removal**: Completely removed Google Gemini AI dependency
+- **Manual Input**: Modified modal to allow manual Portuguese/English input
+- **Dual Audio Buttons**: Created separate buttons for Portuguese and English audio
+- **Documentation**: Updated README.md, added .gitignore, removed environment complexity
 
 ### Potential Enhancements
 - **User Authentication**: Individual user accounts and lesson management

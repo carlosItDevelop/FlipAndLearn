@@ -20,10 +20,10 @@ Um aplicativo interativo de aprendizado de inglês com flashcards inteligentes, 
 - **Inglês (en-US)** quando exibindo texto em inglês
 - **Compatibilidade** com navegadores que suportam Web Speech API
 
-### 🧠 IA para Tradução
-- **Tradução automática** usando Google Gemini AI
-- **Adição de lições personalizadas** com tradução em tempo real
-- **Processamento inteligente** de texto português para inglês
+### ✏️ Adição Manual de Lições
+- **Inserção manual** de texto em português e inglês
+- **Seleção de nível** de dificuldade personalizável
+- **Lições personalizadas** criadas diretamente pelo usuário
 
 ### 💾 Persistência de Dados
 - **Banco PostgreSQL** para armazenamento permanente
@@ -52,17 +52,17 @@ Um aplicativo interativo de aprendizado de inglês com flashcards inteligentes, 
 - **Drizzle ORM** para operações type-safe
 - **CORS** configurado para comunicação frontend-backend
 
-### IA e Serviços
-- **Google Gemini AI** para tradução automática
+### Serviços
 - **API REST** para gerenciamento de lições
-- **Environment variables** para configuração segura
+- **Web Speech API** nativa do navegador
+- **Configuração local** sem dependências externas
 
 ## 🚀 Como Executar
 
 ### Pré-requisitos
 - Node.js 18+ 
 - PostgreSQL database
-- Chave API do Google Gemini (opcional, para tradução)
+- Navegador moderno com suporte à Web Speech API
 
 ### Configuração
 1. Clone o repositório
@@ -74,7 +74,6 @@ Um aplicativo interativo de aprendizado de inglês com flashcards inteligentes, 
 3. Configure as variáveis de ambiente:
    ```env
    DATABASE_URL=sua_url_do_postgresql
-   GEMINI_API_KEY=sua_chave_do_gemini
    ```
 
 4. Execute as migrações do banco:
@@ -90,7 +89,7 @@ Um aplicativo interativo de aprendizado de inglês com flashcards inteligentes, 
 
 2. Inicie o frontend Angular:
    ```bash
-   ng serve --host 0.0.0.0 --port 5000
+   npm install && ng serve --host 0.0.0.0 --port 5000
    ```
 
 3. Acesse `http://localhost:5000`
@@ -105,8 +104,7 @@ Um aplicativo interativo de aprendizado de inglês com flashcards inteligentes, 
 │   │   │   └── add-lesson-modal/    # Modal para adicionar lições
 │   │   ├── services/
 │   │   │   ├── lesson.service.ts    # Gerenciamento de lições
-│   │   │   ├── audio.service.ts     # Síntese de voz
-│   │   │   └── translation.service.ts # Tradução com IA
+│   │   │   └── audio.service.ts     # Síntese de voz
 │   │   └── models/
 │   │       └── lesson.model.ts      # Modelos de dados
 ├── server/
