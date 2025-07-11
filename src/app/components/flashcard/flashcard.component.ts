@@ -29,7 +29,12 @@ export class FlashcardComponent {
     
     this.isPlayingAudio = true;
     try {
-      await this.audioService.speak(this.lesson.englishText, 'en-US');
+      // Se estiver mostrando a tradução (português), falar em português
+      // Se não estiver mostrando a tradução (inglês), falar em inglês
+      const textToSpeak = this.showTranslation ? this.lesson.portugueseText : this.lesson.englishText;
+      const language = this.showTranslation ? 'pt-BR' : 'en-US';
+      
+      await this.audioService.speak(textToSpeak, language);
     } catch (error) {
       console.error('Audio playback failed:', error);
     } finally {
