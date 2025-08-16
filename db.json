@@ -1,54 +1,910 @@
 {
   "lessons": [
-    { "id": 1, "level": "Iniciante", "englishText": "The book is on the table.", "portugueseText": "O livro está sobre a mesa." },
-    { "id": 2, "level": "Intermediário", "englishText": "Software architecture is the set of fundamental structures of a software system.", "portugueseText": "Arquitetura de software é o conjunto de estruturas fundamentais de um sistema de software." },
-    { "id": 3, "level": "Intermediário", "englishText": "To be a good software architect, you need to understand the business requirements deeply.", "portugueseText": "Para ser um bom arquiteto de software, você precisa entender profundamente os requisitos de negócio." },
-    { "id": 4, "level": "Avançado", "englishText": "Leveraging CQRS and event sourcing can lead to highly scalable and resilient systems, but it introduces complexity.", "portugueseText": "Aproveitar CQRS e event sourcing pode levar a sistemas altamente escaláveis e resilientes, mas introduz complexidade." },
-    { "id": 5, "level": "Iniciante", "englishText": "I would like to order a coffee, please.", "portugueseText": "Eu gostaria de pedir um café, por favor." },
-    { "id": 6, "level": "Iniciante", "englishText": "Where is the nearest train station?", "portugueseText": "Onde é a estação de trem mais próxima?" },
-    { "id": 7, "level": "Intermediário", "englishText": "The team is deploying the new feature to the production environment.", "portugueseText": "A equipe está implantando o novo recurso no ambiente de produção." },
-    { "id": 8, "level": "Intermediário", "englishText": "Learning a new language opens up a world of opportunities.", "portugueseText": "Aprender um novo idioma abre um mundo de oportunidades." },
-    { "id": 9, "level": "Avançado", "englishText": "A robust CI/CD pipeline is crucial for modern software development agility.", "portugueseText": "Um pipeline de CI/CD robusto é crucial para a agilidade do desenvolvimento de software moderno." },
-    { "id": 10, "level": "Avançado", "englishText": "Despite the initial challenges, refactoring the legacy code resulted in significant performance improvements.", "portugueseText": "Apesar dos desafios iniciais, a refatoração do código legado resultou em melhorias significativas de desempenho." },
-    { "id": 11, "level": "Iniciante", "englishText": "My name is Carlos.", "portugueseText": "Meu nome é Carlos." },
-    { "id": 12, "level": "Iniciante", "englishText": "What time is it?", "portugueseText": "Que horas são?" },
-    { "id": 13, "level": "Iniciante", "englishText": "I need help with my luggage.", "portugueseText": "Eu preciso de ajuda com minha bagagem." },
-    { "id": 14, "level": "Iniciante", "englishText": "How much does this cost?", "portugueseText": "Quanto custa isto?" },
-    { "id": 15, "level": "Iniciante", "englishText": "The weather is beautiful today.", "portugueseText": "O tempo está lindo hoje." },
-    { "id": 16, "level": "Iniciante", "englishText": "Can you speak slowly, please?", "portugueseText": "Você pode falar devagar, por favor?" },
-    { "id": 17, "level": "Iniciante", "englishText": "I am learning English.", "portugueseText": "Eu estou aprendendo inglês." },
-    { "id": 18, "level": "Iniciante", "englishText": "This is my family.", "portugueseText": "Esta é minha família." },
-    { "id": 19, "level": "Iniciante", "englishText": "See you tomorrow.", "portugueseText": "Até amanhã." },
-    { "id": 20, "level": "Iniciante", "englishText": "Have a nice day!", "portugueseText": "Tenha um bom dia!" },
-    { "id": 21, "level": "Intermediário", "englishText": "The database migration script failed last night.", "portugueseText": "O script de migração do banco de dados falhou na noite passada." },
-    { "id": 22, "level": "Intermediário", "englishText": "We need to optimize the query to improve performance.", "portugueseText": "Nós precisamos otimizar a consulta para melhorar o desempenho." },
-    { "id": 23, "level": "Intermediário", "englishText": "What are the main advantages of using this framework?", "portugueseText": "Quais são as principais vantagens de usar este framework?" },
-    { "id": 24, "level": "Intermediário", "englishText": "The project deadline is approaching quickly.", "portugueseText": "O prazo do projeto está se aproximando rapidamente." },
-    { "id": 25, "level": "Intermediário", "englishText": "I have been working as a software architect for ten years.", "portugueseText": "Eu trabalho como arquiteto de software há dez anos." },
-    { "id": 26, "level": "Intermediário", "englishText": "Could you please review my pull request?", "portugueseText": "Você poderia, por favor, revisar meu pull request?" },
-    { "id": 27, "level": "Intermediário", "englishText": "Effective communication is key to a successful team.", "portugueseText": "Comunicação eficaz é a chave para uma equipe de sucesso." },
-    { "id": 28, "level": "Intermediário", "englishText": "Let's schedule a meeting to discuss the requirements.", "portugueseText": "Vamos agendar uma reunião para discutir os requisitos." },
-    { "id": 29, "level": "Intermediário", "englishText": "The application is not responding.", "portugueseText": "A aplicação não está respondendo." },
-    { "id": 30, "level": "Intermediário", "englishText": "I'm looking forward to our trip to the beach.", "portugueseText": "Estou ansioso para nossa viagem à praia." },
-    { "id": 31, "level": "Avançado", "englishText": "Idempotency is a critical property for handlers in a distributed event-driven architecture.", "portugueseText": "A idempotência é uma propriedade crítica para handlers em uma arquitetura distribuída orientada a eventos." },
-    { "id": 32, "level": "Avançado", "englishText": "The CAP theorem forces a choice between consistency and availability during a network partition.", "portugueseText": "O teorema CAP força uma escolha entre consistência e disponibilidade durante uma partição de rede." },
-    { "id": 33, "level": "Avançado", "englishText": "Implementing a circuit breaker pattern can prevent cascading failures in microservices.", "portugueseText": "Implementar um padrão de circuit breaker pode prevenir falhas em cascata em microsserviços." },
-    { "id": 34, "level": "Avançado", "englishText": "The nuances of garbage collection in high-performance applications cannot be overstated.", "portugueseText": "As nuances da coleta de lixo em aplicações de alto desempenho não podem ser exageradas." },
-    { "id": 35, "level": "Avançado", "englishText": "He had to delve into the intricacies of the legacy system to debug the elusive issue.", "portugueseText": "Ele teve que mergulhar nas complexidades do sistema legado para depurar o problema elusivo." },
-    { "id": 36, "level": "Avançado", "englishText": "The proliferation of IoT devices presents both opportunities and significant security challenges.", "portugueseText": "A proliferação de dispositivos IoT apresenta tanto oportunidades quanto desafios de segurança significativos." },
-    { "id": 37, "level": "Avançado", "englishText": "Quantum computing threatens to render current cryptographic standards obsolete.", "portugueseText": "A computação quântica ameaça tornar os padrões criptográficos atuais obsoletos." },
-    { "id": 38, "level": "Avançado", "englishText": "The committee's decision was predicated on a thorough analysis of the economic data.", "portugueseText": "A decisão do comitê foi baseada em uma análise completa dos dados econômicos." },
-    { "id": 39, "level": "Avançado", "englishText": "They reached an impasse in the negotiations, with neither side willing to compromise.", "portugueseText": "Eles chegaram a um impasse nas negociações, com nenhum dos lados disposto a ceder." },
-    { "id": 40, "level": "Avançado", "englishText": "To remain competitive, the company must perpetually innovate.", "portugueseText": "Para se manter competitiva, a empresa deve inovar perpetuamente." },
-    { "id": 41, "level": "Iniciante", "englishText": "The sky is blue.", "portugueseText": "O céu é azul." },
-    { "id": 42, "level": "Intermediário", "englishText": "I'm reading a book about artificial intelligence.", "portugueseText": "Estou lendo um livro sobre inteligência artificial." },
-    { "id": 43, "level": "Avançado", "englishText": "The philosophical implications of sentient AI are profound.", "portugueseText": "As implicações filosóficas de uma IA senciente são profundas." },
-    { "id": 44, "level": "Iniciante", "englishText": "My favorite food is pizza.", "portugueseText": "Minha comida favorita é pizza." },
-    { "id": 45, "level": "Intermediário", "englishText": "We should refactor this component to make it more reusable.", "portugueseText": "Deveríamos refatorar este componente para torná-lo mais reutilizável." },
-    { "id": 46, "level": "Avançado", "englishText": "The system exhibits emergent behavior that was not explicitly programmed.", "portugueseText": "O sistema exibe um comportamento emergente que não foi explicitamente programado." },
-    { "id": 47, "level": "Iniciante", "englishText": "I go to the gym three times a week.", "portugueseText": "Eu vou à academia três vezes por semana." },
-    { "id": 48, "level": "Intermediário", "englishText": "The API documentation is unclear about this endpoint.", "portugueseText": "A documentação da API não é clara sobre este endpoint." },
-    { "id": 49, "level": "Avançado", "englishText": "Orthogonality in software design reduces coupling and improves maintainability.", "portugueseText": "A ortogonalidade no design de software reduz o acoplamento e melhora a manutenibilidade." },
-    { "id": 50, "level": "Intermediário", "englishText": "I'm trying to connect to the database, but I'm getting an error.", "portugueseText": "Estou tentando me conectar ao banco de dados, mas estou recebendo um erro." }
+    {
+      "id": "1",
+      "level": "Iniciante",
+      "englishText": "The book is on the table.",
+      "portugueseText": "O livro está sobre a mesa."
+    },
+    {
+      "id": "2",
+      "level": "Intermediário",
+      "englishText": "Software architecture is the set of fundamental structures of a software system.",
+      "portugueseText": "Arquitetura de software é o conjunto de estruturas fundamentais de um sistema de software."
+    },
+    {
+      "id": "3",
+      "level": "Intermediário",
+      "englishText": "To be a good software architect, you need to understand the business requirements deeply.",
+      "portugueseText": "Para ser um bom arquiteto de software, você precisa entender profundamente os requisitos de negócio."
+    },
+    {
+      "id": "4",
+      "level": "Avançado",
+      "englishText": "Leveraging CQRS and event sourcing can lead to highly scalable and resilient systems, but it introduces complexity.",
+      "portugueseText": "Aproveitar CQRS e event sourcing pode levar a sistemas altamente escaláveis e resilientes, mas introduz complexidade."
+    },
+    {
+      "id": "5",
+      "level": "Iniciante",
+      "englishText": "I would like to order a coffee, please.",
+      "portugueseText": "Eu gostaria de pedir um café, por favor."
+    },
+    {
+      "id": "6",
+      "level": "Iniciante",
+      "englishText": "Where is the nearest train station?",
+      "portugueseText": "Onde é a estação de trem mais próxima?"
+    },
+    {
+      "id": "7",
+      "level": "Intermediário",
+      "englishText": "The team is deploying the new feature to the production environment.",
+      "portugueseText": "A equipe está implantando o novo recurso no ambiente de produção."
+    },
+    {
+      "id": "8",
+      "level": "Intermediário",
+      "englishText": "Learning a new language opens up a world of opportunities.",
+      "portugueseText": "Aprender um novo idioma abre um mundo de oportunidades."
+    },
+    {
+      "id": "9",
+      "level": "Avançado",
+      "englishText": "A robust CI/CD pipeline is crucial for modern software development agility.",
+      "portugueseText": "Um pipeline de CI/CD robusto é crucial para a agilidade do desenvolvimento de software moderno."
+    },
+    {
+      "id": "10",
+      "level": "Avançado",
+      "englishText": "Despite the initial challenges, refactoring the legacy code resulted in significant performance improvements.",
+      "portugueseText": "Apesar dos desafios iniciais, a refatoração do código legado resultou em melhorias significativas de desempenho."
+    },
+    {
+      "id": "11",
+      "level": "Iniciante",
+      "englishText": "My name is Carlos.",
+      "portugueseText": "Meu nome é Carlos."
+    },
+    {
+      "id": "12",
+      "level": "Iniciante",
+      "englishText": "What time is it?",
+      "portugueseText": "Que horas são?"
+    },
+    {
+      "id": "13",
+      "level": "Iniciante",
+      "englishText": "I need help with my luggage.",
+      "portugueseText": "Eu preciso de ajuda com minha bagagem."
+    },
+    {
+      "id": "14",
+      "level": "Iniciante",
+      "englishText": "How much does this cost?",
+      "portugueseText": "Quanto custa isto?"
+    },
+    {
+      "id": "15",
+      "level": "Iniciante",
+      "englishText": "The weather is beautiful today.",
+      "portugueseText": "O tempo está lindo hoje."
+    },
+    {
+      "id": "16",
+      "level": "Iniciante",
+      "englishText": "Can you speak slowly, please?",
+      "portugueseText": "Você pode falar devagar, por favor?"
+    },
+    {
+      "id": "17",
+      "level": "Iniciante",
+      "englishText": "I am learning English.",
+      "portugueseText": "Eu estou aprendendo inglês."
+    },
+    {
+      "id": "18",
+      "level": "Iniciante",
+      "englishText": "This is my family.",
+      "portugueseText": "Esta é minha família."
+    },
+    {
+      "id": "19",
+      "level": "Iniciante",
+      "englishText": "See you tomorrow.",
+      "portugueseText": "Até amanhã."
+    },
+    {
+      "id": "20",
+      "level": "Iniciante",
+      "englishText": "Have a nice day!",
+      "portugueseText": "Tenha um bom dia!"
+    },
+    {
+      "id": "21",
+      "level": "Intermediário",
+      "englishText": "The database migration script failed last night.",
+      "portugueseText": "O script de migração do banco de dados falhou na noite passada."
+    },
+    {
+      "id": "22",
+      "level": "Intermediário",
+      "englishText": "We need to optimize the query to improve performance.",
+      "portugueseText": "Nós precisamos otimizar a consulta para melhorar o desempenho."
+    },
+    {
+      "id": "23",
+      "level": "Intermediário",
+      "englishText": "What are the main advantages of using this framework?",
+      "portugueseText": "Quais são as principais vantagens de usar este framework?"
+    },
+    {
+      "id": "24",
+      "level": "Intermediário",
+      "englishText": "The project deadline is approaching quickly.",
+      "portugueseText": "O prazo do projeto está se aproximando rapidamente."
+    },
+    {
+      "id": "25",
+      "level": "Intermediário",
+      "englishText": "I have been working as a software architect for ten years.",
+      "portugueseText": "Eu trabalho como arquiteto de software há dez anos."
+    },
+    {
+      "id": "26",
+      "level": "Intermediário",
+      "englishText": "Could you please review my pull request?",
+      "portugueseText": "Você poderia, por favor, revisar meu pull request?"
+    },
+    {
+      "id": "27",
+      "level": "Intermediário",
+      "englishText": "Effective communication is key to a successful team.",
+      "portugueseText": "Comunicação eficaz é a chave para uma equipe de sucesso."
+    },
+    {
+      "id": "28",
+      "level": "Intermediário",
+      "englishText": "Let's schedule a meeting to discuss the requirements.",
+      "portugueseText": "Vamos agendar uma reunião para discutir os requisitos."
+    },
+    {
+      "id": "29",
+      "level": "Intermediário",
+      "englishText": "The application is not responding.",
+      "portugueseText": "A aplicação não está respondendo."
+    },
+    {
+      "id": "30",
+      "level": "Intermediário",
+      "englishText": "I'm looking forward to our trip to the beach.",
+      "portugueseText": "Estou ansioso para nossa viagem à praia."
+    },
+    {
+      "id": "31",
+      "level": "Avançado",
+      "englishText": "Idempotency is a critical property for handlers in a distributed event-driven architecture.",
+      "portugueseText": "A idempotência é uma propriedade crítica para handlers em uma arquitetura distribuída orientada a eventos."
+    },
+    {
+      "id": "32",
+      "level": "Avançado",
+      "englishText": "The CAP theorem forces a choice between consistency and availability during a network partition.",
+      "portugueseText": "O teorema CAP força uma escolha entre consistência e disponibilidade durante uma partição de rede."
+    },
+    {
+      "id": "33",
+      "level": "Avançado",
+      "englishText": "Implementing a circuit breaker pattern can prevent cascading failures in microservices.",
+      "portugueseText": "Implementar um padrão de circuit breaker pode prevenir falhas em cascata em microsserviços."
+    },
+    {
+      "id": "34",
+      "level": "Avançado",
+      "englishText": "The nuances of garbage collection in high-performance applications cannot be overstated.",
+      "portugueseText": "As nuances da coleta de lixo em aplicações de alto desempenho não podem ser exageradas."
+    },
+    {
+      "id": "35",
+      "level": "Avançado",
+      "englishText": "He had to delve into the intricacies of the legacy system to debug the elusive issue.",
+      "portugueseText": "Ele teve que mergulhar nas complexidades do sistema legado para depurar o problema elusivo."
+    },
+    {
+      "id": "36",
+      "level": "Avançado",
+      "englishText": "The proliferation of IoT devices presents both opportunities and significant security challenges.",
+      "portugueseText": "A proliferação de dispositivos IoT apresenta tanto oportunidades quanto desafios de segurança significativos."
+    },
+    {
+      "id": "37",
+      "level": "Avançado",
+      "englishText": "Quantum computing threatens to render current cryptographic standards obsolete.",
+      "portugueseText": "A computação quântica ameaça tornar os padrões criptográficos atuais obsoletos."
+    },
+    {
+      "id": "38",
+      "level": "Avançado",
+      "englishText": "The committee's decision was predicated on a thorough analysis of the economic data.",
+      "portugueseText": "A decisão do comitê foi baseada em uma análise completa dos dados econômicos."
+    },
+    {
+      "id": "39",
+      "level": "Avançado",
+      "englishText": "They reached an impasse in the negotiations, with neither side willing to compromise.",
+      "portugueseText": "Eles chegaram a um impasse nas negociações, com nenhum dos lados disposto a ceder."
+    },
+    {
+      "id": "40",
+      "level": "Avançado",
+      "englishText": "To remain competitive, the company must perpetually innovate.",
+      "portugueseText": "Para se manter competitiva, a empresa deve inovar perpetuamente."
+    },
+    {
+      "id": "41",
+      "level": "Iniciante",
+      "englishText": "The sky is blue.",
+      "portugueseText": "O céu é azul."
+    },
+    {
+      "id": "42",
+      "level": "Intermediário",
+      "englishText": "I'm reading a book about artificial intelligence.",
+      "portugueseText": "Estou lendo um livro sobre inteligência artificial."
+    },
+    {
+      "id": "43",
+      "level": "Avançado",
+      "englishText": "The philosophical implications of sentient AI are profound.",
+      "portugueseText": "As implicações filosóficas de uma IA senciente são profundas."
+    },
+    {
+      "id": "44",
+      "level": "Iniciante",
+      "englishText": "My favorite food is pizza.",
+      "portugueseText": "Minha comida favorita é pizza."
+    },
+    {
+      "id": "45",
+      "level": "Intermediário",
+      "englishText": "We should refactor this component to make it more reusable.",
+      "portugueseText": "Deveríamos refatorar este componente para torná-lo mais reutilizável."
+    },
+    {
+      "id": "46",
+      "level": "Avançado",
+      "englishText": "The system exhibits emergent behavior that was not explicitly programmed.",
+      "portugueseText": "O sistema exibe um comportamento emergente que não foi explicitamente programado."
+    },
+    {
+      "id": "47",
+      "level": "Iniciante",
+      "englishText": "I go to the gym three times a week.",
+      "portugueseText": "Eu vou à academia três vezes por semana."
+    },
+    {
+      "id": "48",
+      "level": "Intermediário",
+      "englishText": "The API documentation is unclear about this endpoint.",
+      "portugueseText": "A documentação da API não é clara sobre este endpoint."
+    },
+    {
+      "id": "49",
+      "level": "Avançado",
+      "englishText": "Orthogonality in software design reduces coupling and improves maintainability.",
+      "portugueseText": "A ortogonalidade no design de software reduz o acoplamento e melhora a manutenibilidade."
+    },
+    {
+      "id": "50",
+      "level": "Intermediário",
+      "englishText": "I'm trying to connect to the database, but I'm getting an error.",
+      "portugueseText": "Estou tentando me conectar ao banco de dados, mas estou recebendo um erro."
+    },
+        {
+      "id": 51,
+      "level": "Iniciante",
+      "englishText": "Can I have the bill, please?",
+      "portugueseText": "Você pode me trazer a conta, por favor?"
+    },
+    {
+      "id": 52,
+      "level": "Iniciante",
+      "englishText": "It's a pleasure to meet you.",
+      "portugueseText": "É um prazer te conhecer."
+    },
+    {
+      "id": 53,
+      "level": "Iniciante",
+      "englishText": "I'm sorry, I don't understand.",
+      "portugueseText": "Me desculpe, eu não entendo."
+    },
+    {
+      "id": 54,
+      "level": "Iniciante",
+      "englishText": "My favorite season is autumn.",
+      "portugueseText": "Minha estação favorita é o outono."
+    },
+    {
+      "id": 55,
+      "level": "Iniciante",
+      "englishText": "He is my younger brother.",
+      "portugueseText": "Ele é meu irmão mais novo."
+    },
+    {
+      "id": 56,
+      "level": "Iniciante",
+      "englishText": "She works as a doctor in a big hospital.",
+      "portugueseText": "Ela trabalha como médica em um grande hospital."
+    },
+    {
+      "id": 57,
+      "level": "Iniciante",
+      "englishText": "They are traveling to Europe next month.",
+      "portugueseText": "Eles vão viajar para a Europa no próximo mês."
+    },
+    {
+      "id": 58,
+      "level": "Iniciante",
+      "englishText": "What do you do for a living?",
+      "portugueseText": "O que você faz da vida? (Qual é a sua profissão?)"
+    },
+    {
+      "id": 59,
+      "level": "Iniciante",
+      "englishText": "I usually wake up at 7 AM.",
+      "portugueseText": "Eu geralmente acordo às 7 da manhã."
+    },
+    {
+      "id": 60,
+      "level": "Iniciante",
+      "englishText": "The children are playing in the park.",
+      "portugueseText": "As crianças estão brincando no parque."
+    },
+    {
+      "id": 61,
+      "level": "Iniciante",
+      "englishText": "This coffee is too hot.",
+      "portugueseText": "Este café está quente demais."
+    },
+    {
+      "id": 62,
+      "level": "Iniciante",
+      "englishText": "The movie starts in ten minutes.",
+      "portugueseText": "O filme começa em dez minutos."
+    },
+    {
+      "id": 63,
+      "level": "Iniciante",
+      "englishText": "I need to buy some groceries.",
+      "portugueseText": "Eu preciso comprar alguns mantimentos."
+    },
+    {
+      "id": 64,
+      "level": "Iniciante",
+      "englishText": "The bank is closed on Sundays.",
+      "portugueseText": "O banco fecha aos domingos."
+    },
+    {
+      "id": 65,
+      "level": "Iniciante",
+      "englishText": "Is there a pharmacy near here?",
+      "portugueseText": "Existe uma farmácia aqui perto?"
+    },
+    {
+      "id": 66,
+      "level": "Iniciante",
+      "englishText": "He is wearing a blue shirt and black pants.",
+      "portugueseText": "Ele está vestindo uma camisa azul e calças pretas."
+    },
+    {
+      "id": 67,
+      "level": "Iniciante",
+      "englishText": "I love listening to music while I work.",
+      "portugueseText": "Eu amo ouvir música enquanto trabalho."
+    },
+    {
+      "id": 68,
+      "level": "Iniciante",
+      "englishText": "The book you recommended is very interesting.",
+      "portugueseText": "O livro que você recomendou é muito interessante."
+    },
+    {
+      "id": 69,
+      "level": "Iniciante",
+      "englishText": "My computer is running very slowly.",
+      "portugueseText": "Meu computador está funcionando muito lentamente."
+    },
+    {
+      "id": 70,
+      "level": "Iniciante",
+      "englishText": "Let's go for a walk on the beach.",
+      "portugueseText": "Vamos dar uma caminhada na praia."
+    },
+    {
+      "id": 71,
+      "level": "Iniciante",
+      "englishText": "I have a meeting at 10 AM tomorrow.",
+      "portugueseText": "Eu tenho uma reunião às 10 da manhã amanhã."
+    },
+    {
+      "id": 72,
+      "level": "Iniciante",
+      "englishText": "She has two cats and one dog.",
+      "portugueseText": "Ela tem dois gatos e um cachorro."
+    },
+    {
+      "id": 73,
+      "level": "Iniciante",
+      "englishText": "The food in this restaurant is delicious.",
+      "portugueseText": "A comida neste restaurante é deliciosa."
+    },
+    {
+      "id": 74,
+      "level": "Iniciante",
+      "englishText": "He needs to finish his homework.",
+      "portugueseText": "Ele precisa terminar o dever de casa dele."
+    },
+    {
+      "id": 75,
+      "level": "Iniciante",
+      "englishText": "I'm feeling a little tired today.",
+      "portugueseText": "Estou me sentindo um pouco cansado hoje."
+    },
+    {
+      "id": 76,
+      "level": "Iniciante",
+      "englishText": "The weather forecast says it will rain tomorrow.",
+      "portugueseText": "A previsão do tempo diz que vai chover amanhã."
+    },
+    {
+      "id": 77,
+      "level": "Iniciante",
+      "englishText": "Can you pass me the salt, please?",
+      "portugueseText": "Você pode me passar o sal, por favor?"
+    },
+    {
+      "id": 78,
+      "level": "Iniciante",
+      "englishText": "The traffic is terrible this morning.",
+      "portugueseText": "O trânsito está terrível esta manhã."
+    },
+    {
+      "id": 79,
+      "level": "Iniciante",
+      "englishText": "I forgot to charge my phone.",
+      "portugueseText": "Eu esqueci de carregar meu celular."
+    },
+    {
+      "id": 80,
+      "level": "Iniciante",
+      "englishText": "She is an excellent software developer.",
+      "portugueseText": "Ela é uma excelente desenvolvedora de software."
+    },
+    {
+      "id": 81,
+      "level": "Iniciante",
+      "englishText": "We live in a small apartment in the city center.",
+      "portugueseText": "Nós moramos em um pequeno apartamento no centro da cidade."
+    },
+    {
+      "id": 82,
+      "level": "Iniciante",
+      "englishText": "He is learning to play the guitar.",
+      "portugueseText": "Ele está aprendendo a tocar violão."
+    },
+    {
+      "id": 83,
+      "level": "Intermediário",
+      "englishText": "The presentation was postponed until next Friday.",
+      "portugueseText": "A apresentação foi adiada para a próxima sexta-feira."
+    },
+    {
+      "id": 84,
+      "level": "Intermediário",
+      "englishText": "We need to look into this issue more carefully.",
+      "portugueseText": "Nós precisamos investigar este problema com mais cuidado."
+    },
+    {
+      "id": 85,
+      "level": "Intermediário",
+      "englishText": "He has been working on this project for over a year.",
+      "portugueseText": "Ele tem trabalhado neste projeto por mais de um ano."
+    },
+    {
+      "id": 86,
+      "level": "Intermediário",
+      "englishText": "Despite the bad weather, we decided to go out.",
+      "portugueseText": "Apesar do tempo ruim, nós decidimos sair."
+    },
+    {
+      "id": 87,
+      "level": "Intermediário",
+      "englishText": "The new software update includes several security patches.",
+      "portugueseText": "A nova atualização de software inclui diversas correções de segurança."
+    },
+    {
+      "id": 88,
+      "level": "Intermediário",
+      "englishText": "I'm having trouble connecting to the database server.",
+      "portugueseText": "Estou tendo problemas para me conectar ao servidor de banco de dados."
+    },
+    {
+      "id": 89,
+      "level": "Intermediário",
+      "englishText": "The team conducted a thorough code review before the deployment.",
+      "portugueseText": "A equipe realizou uma revisão de código completa antes da implantação."
+    },
+    {
+      "id": 90,
+      "level": "Intermediário",
+      "englishText": "She is responsible for managing the entire development team.",
+      "portugueseText": "Ela é responsável por gerenciar toda a equipe de desenvolvimento."
+    },
+    {
+      "id": 91,
+      "level": "Intermediário",
+      "englishText": "If I had known about the problem, I would have helped.",
+      "portugueseText": "Se eu soubesse do problema, eu teria ajudado."
+    },
+    {
+      "id": 92,
+      "level": "Intermediário",
+      "englishText": "The company is planning to expand its operations overseas.",
+      "portugueseText": "A empresa está planejando expandir suas operações no exterior."
+    },
+    {
+      "id": 93,
+      "level": "Intermediário",
+      "englishText": "This task is more complicated than it initially seemed.",
+      "portugueseText": "Esta tarefa é mais complicada do que parecia inicialmente."
+    },
+    {
+      "id": 94,
+      "level": "Intermediário",
+      "englishText": "We ran out of coffee, I need to buy some more.",
+      "portugueseText": "Nosso café acabou, preciso comprar mais."
+    },
+    {
+      "id": 95,
+      "level": "Intermediário",
+      "englishText": "He turned down the job offer because the salary was too low.",
+      "portugueseText": "Ele recusou a oferta de emprego porque o salário era muito baixo."
+    },
+    {
+      "id": 96,
+      "level": "Intermediário",
+      "englishText": "The application's performance has significantly improved after the refactoring.",
+      "portugueseText": "O desempenho da aplicação melhorou significativamente após a refatoração."
+    },
+    {
+      "id": 97,
+      "level": "Intermediário",
+      "englishText": "You should back up your important files regularly.",
+      "portugueseText": "Você deveria fazer backup dos seus arquivos importantes regularmente."
+    },
+    {
+      "id": 98,
+      "level": "Intermediário",
+      "englishText": "The client was not satisfied with the final result.",
+      "portugueseText": "O cliente não ficou satisfeito com o resultado final."
+    },
+    {
+      "id": 99,
+      "level": "Intermediário",
+      "englishText": "By the time we arrived, the movie had already started.",
+      "portugueseText": "Quando nós chegamos, o filme já tinha começado."
+    },
+    {
+      "id": 100,
+      "level": "Intermediário",
+      "englishText": "The main goal is to increase user engagement by 20%.",
+      "portugueseText": "O objetivo principal é aumentar o engajamento do usuário em 20%."
+    },
+    {
+      "id": 101,
+      "level": "Intermediário",
+      "englishText": "I'm looking forward to hearing from you soon.",
+      "portugueseText": "Aguardo ansiosamente por notícias suas em breve."
+    },
+    {
+      "id": 102,
+      "level": "Intermediário",
+      "englishText": "The server migration is scheduled for this weekend.",
+      "portugueseText": "A migração do servidor está agendada para este fim de semana."
+    },
+    {
+      "id": 103,
+      "level": "Intermediário",
+      "englishText": "She is fluent in three languages: English, French, and Spanish.",
+      "portugueseText": "Ela é fluente em três idiomas: inglês, francês e espanhol."
+    },
+    {
+      "id": 104,
+      "level": "Intermediário",
+      "englishText": "The user interface could be more intuitive.",
+      "portugueseText": "A interface do usuário poderia ser mais intuitiva."
+    },
+    {
+      "id": 105,
+      "level": "Intermediário",
+      "englishText": "He is used to working under pressure.",
+      "portugueseText": "Ele está acostumado a trabalhar sob pressão."
+    },
+    {
+      "id": 106,
+      "level": "Intermediário",
+      "englishText": "We need to make sure the API is backward compatible.",
+      "portugueseText": "Precisamos garantir que a API seja retrocompatível."
+    },
+    {
+      "id": 107,
+      "level": "Intermediário",
+      "englishText": "The flight was canceled due to a technical issue.",
+      "portugueseText": "O voo foi cancelado devido a um problema técnico."
+    },
+    {
+      "id": 108,
+      "level": "Intermediário",
+      "englishText": "I suggest that we hold a brainstorming session.",
+      "portugueseText": "Eu sugiro que façamos uma sessão de brainstorming."
+    },
+    {
+      "id": 109,
+      "level": "Intermediário",
+      "englishText": "The data is stored in a SQL Server database.",
+      "portugueseText": "Os dados são armazenados em um banco de dados SQL Server."
+    },
+    {
+      "id": 110,
+      "level": "Intermediário",
+      "englishText": "He was advised to consult a specialist.",
+      "portugueseText": "Ele foi aconselhado a consultar um especialista."
+    },
+    {
+      "id": 111,
+      "level": "Intermediário",
+      "englishText": "The more you practice, the better you will become.",
+      "portugueseText": "Quanto mais você pratica, melhor você se torna."
+    },
+    {
+      "id": 112,
+      "level": "Intermediário",
+      "englishText": "This library has been deprecated and should not be used in new projects.",
+      "portugueseText": "Esta biblioteca foi descontinuada e não deve ser usada em novos projetos."
+    },
+    {
+      "id": 113,
+      "level": "Intermediário",
+      "englishText": "I wish I had more free time to read.",
+      "portugueseText": "Eu gostaria de ter mais tempo livre para ler."
+    },
+    {
+      "id": 114,
+      "level": "Intermediário",
+      "englishText": "The system failed to process the request.",
+      "portugueseText": "O sistema falhou ao processar a requisição."
+    },
+    {
+      "id": 115,
+      "level": "Intermediário",
+      "englishText": "She managed to solve the complex algorithm on her own.",
+      "portugueseText": "Ela conseguiu resolver o algoritmo complexo por conta própria."
+    },
+    {
+      "id": 116,
+      "level": "Intermediário",
+      "englishText": "The workshop will cover the fundamentals of machine learning.",
+      "portugueseText": "O workshop abordará os fundamentos de aprendizado de máquina."
+    },
+    {
+      "id": 117,
+      "level": "Intermediário",
+      "englishText": "It's essential to write clean and maintainable code.",
+      "portugueseText": "É essencial escrever código limpo e de fácil manutenção."
+    },
+    {
+      "id": 118,
+      "level": "Intermediário",
+      "englishText": "The network latency is causing performance issues.",
+      "portugueseText": "A latência da rede está causando problemas de desempenho."
+    },
+    {
+      "id": 119,
+      "level": "Intermediário",
+      "englishText": "He is in charge of the entire infrastructure.",
+      "portugueseText": "Ele é o responsável por toda a infraestrutura."
+    },
+    {
+      "id": 120,
+      "level": "Intermediário",
+      "englishText": "We need to weigh the pros and cons before making a decision.",
+      "portugueseText": "Precisamos pesar os prós e os contras antes de tomar uma decisão."
+    },
+    {
+      "id": 121,
+      "level": "Intermediário",
+      "englishText": "The report must be submitted by Monday at the latest.",
+      "portugueseText": "O relatório deve ser entregue até segunda-feira, no máximo."
+    },
+    {
+      "id": 122,
+      "level": "Intermediário",
+      "englishText": "I'm not familiar with that particular technology stack.",
+      "portugueseText": "Não estou familiarizado com essa pilha de tecnologia específica."
+    },
+    {
+      "id": 123,
+      "level": "Avançado",
+      "englishText": "The system's non-functional requirements, such as scalability and resilience, were paramount in the architectural design phase.",
+      "portugueseText": "Os requisitos não-funcionais do sistema, como escalabilidade e resiliência, foram primordiais na fase de design da arquitetura."
+    },
+    {
+      "id": 124,
+      "level": "Avançado",
+      "englishText": "Adopting an event-driven architecture allowed for greater decoupling between services, albeit at the cost of increased operational complexity.",
+      "portugueseText": "Adotar uma arquitetura orientada a eventos permitiu um maior desacoplamento entre os serviços, embora ao custo de uma maior complexidade operacional."
+    },
+    {
+      "id": 125,
+      "level": "Avançado",
+      "englishText": "The quintessential duty of a software architect is to make critical decisions that are hard to change later.",
+      "portugueseText": "O dever quintessencial de um arquiteto de software é tomar decisões críticas que são difíceis de mudar posteriormente."
+    },
+    {
+      "id": 126,
+      "level": "Avançado",
+      "englishText": "The team reached a consensus to leverage a polyglot persistence strategy, using both SQL and NoSQL databases where appropriate.",
+      "portugueseText": "A equipe chegou a um consenso para alavancar uma estratégia de persistência poliglota, usando bancos de dados SQL e NoSQL onde apropriado."
+    },
+    {
+      "id": 127,
+      "level": "Avançado",
+      "englishText": "Notwithstanding the initial skepticism, the adoption of the new framework proved to be a resounding success.",
+      "portugueseText": "Apesar do ceticismo inicial, a adoção do novo framework provou ser um sucesso retumbante."
+    },
+    {
+      "id": 128,
+      "level": "Avançado",
+      "englishText": "The legacy system was so convoluted that any minor change could trigger a cascade of unforeseen failures.",
+      "portugueseText": "O sistema legado era tão complicado que qualquer pequena alteração poderia desencadear uma cascata de falhas imprevistas."
+    },
+    {
+      "id": 129,
+      "level": "Avançado",
+      "englishText": "A thorough root cause analysis revealed a subtle race condition issue under high concurrency loads.",
+      "portugueseText": "Uma análise de causa raiz completa revelou um sutil problema de condição de corrida sob altas cargas de concorrência."
+    },
+    {
+      "id": 130,
+      "level": "Avançado",
+      "englishText": "The architect's proposal was predicated on the assumption that the infrastructure could scale horizontally on demand.",
+      "portugueseText": "A proposta do arquiteto estava baseada na suposição de que a infraestrutura poderia escalar horizontalmente sob demanda."
+    },
+    {
+      "id": 131,
+      "level": "Avançado",
+      "englishText": "To circumvent the single point of failure, they implemented a redundant, high-availability configuration for the primary database.",
+      "portugueseText": "Para contornar o ponto único de falha, eles implementaram uma configuração redundante de alta disponibilidade para o banco de dados principal."
+    },
+    {
+      "id": 132,
+      "level": "Avançado",
+      "englishText": "The proliferation of microservices has exacerbated the challenges related to distributed tracing and observability.",
+      "portugueseText": "A proliferação de microsserviços exacerbou os desafios relacionados ao rastreamento distribuído e à observabilidade."
+    },
+    {
+      "id": 133,
+      "level": "Avançado",
+      "englishText": "His perspicacious insights during the architecture review meeting were invaluable to the project's success.",
+      "portugueseText": "Suas percepções perspicazes durante a reunião de revisão da arquitetura foram inestimáveis para o sucesso do projeto."
+    },
+    {
+      "id": 134,
+      "level": "Avançado",
+      "englishText": "The immutability of the data structures was a cornerstone of the functional programming approach they adopted.",
+      "portugueseText": "A imutabilidade das estruturas de dados foi um pilar da abordagem de programação funcional que eles adotaram."
+    },
+    {
+      "id": 135,
+      "level": "Avançado",
+      "englishText": "The organization is grappling with the technical debt accrued over years of prioritizing feature delivery over code quality.",
+      "portugueseText": "A organização está lutando com a dívida técnica acumulada ao longo de anos priorizando a entrega de funcionalidades em detrimento da qualidade do código."
+    },
+    {
+      "id": 136,
+      "level": "Avançado",
+      "englishText": "The CAP theorem delineates the fundamental trade-offs between consistency, availability, and partition tolerance in distributed systems.",
+      "portugueseText": "O teorema CAP delineia as trocas fundamentais entre consistência, disponibilidade e tolerância à partição em sistemas distribuídos."
+    },
+    {
+      "id": 137,
+      "level": "Avançado",
+      "englishText": "He wrote a meticulous post-mortem report to ensure the same outage would not happen again.",
+      "portugueseText": "Ele escreveu um meticuloso relatório post-mortem para garantir que a mesma interrupção não acontecesse novamente."
+    },
+    {
+      "id": 138,
+      "level": "Avançado",
+      "englishText": "The ubiquitous nature of APIs has transformed the way modern software is designed and integrated.",
+      "portugueseText": "A natureza onipresente das APIs transformou a forma como o software moderno é projetado e integrado."
+    },
+    {
+      "id": 139,
+      "level": "Avançado",
+      "englishText": "The senior engineer was tasked with the unenviable job of untangling the spaghetti code of the monolithic application.",
+      "portugueseText": "O engenheiro sênior foi encarregado do trabalho pouco invejável de desembaraçar o código espaguete da aplicação monolítica."
+    },
+    {
+      "id": 140,
+      "level": "Avançado",
+      "englishText": "It is incumbent upon the architect to articulate the long-term vision and technical strategy to all stakeholders.",
+      "portugueseText": "Compete ao arquiteto articular a visão de longo prazo e a estratégia técnica para todas as partes interessadas."
+    },
+    {
+      "id": 141,
+      "level": "Avançado",
+      "englishText": "The performance bottleneck was eventually traced back to an inefficient database query with a suboptimal execution plan.",
+      "portugueseText": "O gargalo de desempenho foi finalmente rastreado até uma consulta de banco de dados ineficiente com um plano de execução subótimo."
+    },
+    {
+      "id": 142,
+      "level": "Avançado",
+      "englishText": "The ephemeral nature of the cloud resources required a paradigm shift in how they managed configuration and state.",
+      "portugueseText": "A natureza efêmera dos recursos em nuvem exigiu uma mudança de paradigma na forma como eles gerenciavam a configuração e o estado."
+    },
+    {
+      "id": 143,
+      "level": "Avançado",
+      "englishText": "They implemented a circuit breaker pattern to prevent cascading failures and enhance the system's overall resilience.",
+      "portugueseText": "Eles implementaram um padrão de disjuntor (circuit breaker) para prevenir falhas em cascata e aumentar a resiliência geral do sistema."
+    },
+    {
+      "id": 144,
+      "level": "Avançado",
+      "englishText": "The dichotomy between monolithic and microservices architectures is often a false one; hybrid approaches are usually more pragmatic.",
+      "portugueseText": "A dicotomia entre arquiteturas monolíticas e de microsserviços é frequentemente falsa; abordagens híbridas são geralmente mais pragmáticas."
+    },
+    {
+      "id": 145,
+      "level": "Avançado",
+      "englishText": "His eloquent explanation demystified the complex topic for the non-technical members of the team.",
+      "portugueseText": "Sua explicação eloquente desmistificou o tópico complexo para os membros não técnicos da equipe."
+    },
+    {
+      "id": 146,
+      "level": "Avançado",
+      "englishText": "The system must be architected to be agnostic to the underlying cloud provider.",
+      "portugueseText": "O sistema deve ser arquitetado para ser agnóstico ao provedor de nuvem subjacente."
+    },
+    {
+      "id": 147,
+      "level": "Avançado",
+      "englishText": "The judicious application of caching strategies can yield substantial improvements in latency and reduce database load.",
+      "portugueseText": "A aplicação criteriosa de estratégias de cache pode gerar melhorias substanciais na latência e reduzir a carga do banco de dados."
+    },
+    {
+      "id": "148",
+      "level": "Iniciante",
+      "englishText": "Good morning, how can I help you?",
+      "portugueseText": "Bom dia, como posso te ajudar?"
+    },
+    {
+      "id": "149",
+      "level": "Iniciante",
+      "englishText": "Eu gostaria de fazer uma reserva para duas pessoas.",
+      "portugueseText": "I would like to make a reservation for two people."
+    },
+    {
+      "id": "150",
+      "level": "Pessoal",
+      "englishText": "The Wi-Fi is not working.",
+      "portugueseText": "O Wi-Fi não está funcionando."
+    },
+    {
+      "id": "151",
+      "level": "Intermediário",
+      "englishText": "FluentValidation simplifies validation rules in ASP.NET Core applications.",
+      "portugueseText": "FluentValidation simplifica as regras de validação em aplicações ASP.NET Core."
+  }
   ]
 }
